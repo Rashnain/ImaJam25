@@ -15,10 +15,12 @@ canvas_cull_mask = 4294967293
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport"]
 transform = Transform3D(0.059445795, 0.99823153, 0, -0.99823153, 0.059445795, 0, 0, 0, 1, 0, 1.1178316, 0)
+visible = false
 mesh = SubResource("CylinderMesh_rln8v")
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1164072, 1.9199884)
+visible = false
 cull_mask = 1048573
 
 [node name="SubViewport2" type="SubViewport" parent="."]
@@ -26,11 +28,13 @@ canvas_cull_mask = 4294967294
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="SubViewport2"]
 transform = Transform3D(0.8981804, -0.009665462, -0.4395206, 0.4391649, -0.026091183, 0.8980275, -0.020147467, -0.99961275, -0.01918986, 0, 0.1034323, 0)
+visible = false
 layers = 2
 mesh = SubResource("CylinderMesh_rln8v")
 
 [node name="Camera3D2" type="Camera3D" parent="SubViewport2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1253146, 1.9199884)
+visible = false
 cull_mask = 1048574
 
 [node name="Control" type="Control" parent="."]
@@ -42,6 +46,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -51,6 +56,7 @@ size_flags_vertical = 0
 texture = SubResource("ViewportTexture_5fodl")
 
 [node name="TextureRect2" type="TextureRect" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
