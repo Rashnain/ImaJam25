@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfmiw5gbxw15f"]
+
+[ext_resource type="Script" uid="uid://djkrjyw1y16t7" path="res://scripts/missile.gd" id="1_80075"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pj12w"]
+albedo_color = Color(0, 0, 1, 1)
+emission_enabled = true
+emission = Color(0, 1, 1, 1)
+emission_energy_multiplier = 3.0
+disable_receive_shadows = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_hgppy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_80075"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_80075")
+
+[node name="Missile" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Missile"]
+material_override = SubResource("StandardMaterial3D_pj12w")
+mesh = SubResource("SphereMesh_hgppy")
+skeleton = NodePath("../..")
+
+[node name="Area3D" type="Area3D" parent="Missile"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Missile/Area3D"]
+shape = SubResource("BoxShape3D_80075")
+
+[connection signal="area_entered" from="Missile/Area3D" to="." method="_on_area_3d_area_entered"]

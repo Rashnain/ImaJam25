@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://dksuu6e7bmqf2"]
+
+[ext_resource type="PackedScene" uid="uid://c22145ocwrut1" path="res://scenes/invader.tscn" id="1_b7yr3"]
+[ext_resource type="Script" path="res://scripts/canon.gd" id="1_y6rli"]
+[ext_resource type="PackedScene" uid="uid://bw33q1y255vxn" path="res://assets/models/Spaceship(1).glb" id="3_7y6w1"]
+[ext_resource type="PackedScene" uid="uid://drnva0tn7bnqd" path="res://assets/models/Spaceship.glb" id="4_uu818"]
+[ext_resource type="Texture2D" uid="uid://0leskk5adfkw" path="res://assets/images/muzzle.png" id="5_uu818"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o1kce"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8fpss"]
+size = Vector3(3, 1, 2)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5l0hf"]
+lightmap_size_hint = Vector2i(17, 24)
+height = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_avax8"]
+transparency = 1
+albedo_texture = ExtResource("5_uu818")
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rq4jy"]
+material = SubResource("StandardMaterial3D_avax8")
+
+[node name="bunker" type="Node3D"]
+
+[node name="bunker" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_o1kce")
+mesh = SubResource("BoxMesh_8fpss")
+
+[node name="canon" type="MeshInstance3D" parent="bunker"]
+transform = Transform3D(0.9463732, 0.32307512, 0, -0.32307512, 0.9463732, 0, 0, 0, 0.9999999, 0, 0, 0)
+mesh = SubResource("CylinderMesh_5l0hf")
+skeleton = NodePath("../..")
+script = ExtResource("1_y6rli")
+
+[node name="Camera3D" type="Camera3D" parent="bunker/canon"]
+transform = Transform3D(5.960464e-08, -1.0000001, 1.4950178e-08, 4.1075264e-08, -1.4950178e-08, -1, 0.99999994, 5.960465e-08, 4.1075268e-08, 0, 2.5, 0)
+
+[node name="muzzle" type="MeshInstance3D" parent="bunker/canon"]
+transform = Transform3D(5.960466e-09, 5.5879354e-09, 0.10000002, 4.1075277e-09, -0.10000002, 1.8626451e-09, 0.10000002, 4.1075268e-09, -5.9604663e-09, -0.045891464, 3.2417989, 1.4210856e-14)
+mesh = SubResource("PlaneMesh_rq4jy")
+skeleton = NodePath("../../..")
+
+[node name="ui" type="Label" parent="bunker/canon"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = -312.0
+offset_right = 889.0
+offset_bottom = -50.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 36
+text = "Munitions légère [A] (chargement: %.1f/1s) : %d
+Munitions lourdes [E] (chargement: %.1f/5s) : %d
+Angle X : %.1f
+Angle Z : %.1f
+Ressources alien : %d"
+
+[node name="missiles" type="Node3D" parent="."]
+
+[node name="invaders" type="Node3D" parent="."]
+
+[node name="Invader" parent="invaders" instance=ExtResource("1_b7yr3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0615864, 7.4940176, -0.6864872)
+
+[node name="Invader2" parent="invaders" instance=ExtResource("1_b7yr3")]
+transform = Transform3D(-0.3491729, -0.23805887, -0.9063152, -0.08558403, 0.971251, -0.22214243, 0.93314195, -1.276854e-08, -0.35950828, 5.854712, 7.220338, 2.5951233)
+
+[node name="Spaceship(1)" parent="invaders" instance=ExtResource("3_7y6w1")]
+transform = Transform3D(0.0075110295, 0, -0.006601852, 0, 0.01, 0, 0.006601852, 0, 0.0075110295, 5.31264, 3.7466512, -3.5208588)
+
+[node name="spaceship" parent="invaders" instance=ExtResource("4_uu818")]
+transform = Transform3D(-0.2736907, 0, -0.96181774, 0, 1, 0, 0.96181774, 0, -0.2736907, 16.795027, 0.26288033, 1.4135642)

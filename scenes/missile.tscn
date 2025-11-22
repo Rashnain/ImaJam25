@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cy6mlo2wvi2qf"]
+
+[ext_resource type="Script" path="res://scripts/missile.gd" id="1_6cx5e"]
+[ext_resource type="PackedScene" uid="uid://d24ln7p66dnj6" path="res://assets/models/Missile.glb" id="1_np454"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6cx5e"]
+size = Vector3(1, 2.5, 1)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_6cx5e")
+
+[node name="Missile" parent="." instance=ExtResource("1_np454")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="Missile"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Missile/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21743774, 0)
+shape = SubResource("BoxShape3D_6cx5e")

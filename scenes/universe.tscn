@@ -1,12 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://begt7ltqhe0s2"]
+[gd_scene load_steps=16 format=3 uid="uid://qw0l40j2x8qo"]
 
-[ext_resource type="Shader" uid="uid://dxmi6ae305ccl" path="res://stars_skybox.gdshader" id="1_uc3kj"]
+[ext_resource type="Shader" uid="uid://dxmi6ae305ccl" path="res://shaders/stars_skybox.gdshader" id="1_uc3kj"]
 [ext_resource type="Texture2D" uid="uid://cyjsc8pagl37o" path="res://assets/images/stars.png" id="2_jegdv"]
-[ext_resource type="Script" uid="uid://cruraok6nexmg" path="res://scripts/skyCycle.gd" id="3_jegdv"]
+[ext_resource type="Script" path="res://scripts/skyCycle.gd" id="3_jegdv"]
 [ext_resource type="PackedScene" uid="uid://bhec4di1vy6je" path="res://assets/models/Geodesic Dome.glb" id="3_qbb8e"]
-[ext_resource type="PackedScene" uid="uid://d4ggp4gkswbts" path="res://test/bucker.tscn" id="4_56nod"]
+[ext_resource type="PackedScene" uid="uid://dksuu6e7bmqf2" path="res://scenes/buncker.tscn" id="4_56nod"]
 [ext_resource type="PackedScene" uid="uid://0cqe7mefg1tp" path="res://test/mine.tscn" id="5_5fwve"]
-[ext_resource type="Shader" uid="uid://dufovwr4lc72q" path="res://crt_shader.gdshader" id="7_qbb8e"]
+[ext_resource type="Shader" path="res://crt_shader.gdshader" id="7_qbb8e"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cqgor"]
 shader = ExtResource("1_uc3kj")
@@ -59,7 +59,7 @@ shader_parameter/distort_intensity = 0.010000000475
 shader_parameter/noise_opacity = 0.05600000266
 shader_parameter/noise_speed = 5.0
 shader_parameter/static_noise_intensity = 0.00800000038
-shader_parameter/aberration = 0.010000047974999982
+shader_parameter/aberration = 0.01000004797499998
 shader_parameter/brightness = 1.4
 shader_parameter/discolor = true
 shader_parameter/warp_amount = 0.4270000202825
@@ -93,9 +93,6 @@ transform = Transform3D(-0.99923724, -0.03905057, 0, 0.03905057, -0.99923724, 0,
 
 [node name="Dome" parent="Earth" instance=ExtResource("3_qbb8e")]
 
-[node name="bucker" parent="Earth" instance=ExtResource("4_56nod")]
-transform = Transform3D(-0.99923724, 0.03905057, 0, -0.03905057, -0.99923724, 0, 0, 0, 1, -0.088285446, 0.14475632, -3.2986722)
-
 [node name="mine" parent="Earth" instance=ExtResource("5_5fwve")]
 transform = Transform3D(-0.9992372, 0.039050568, 2.9094943e-10, -0.039050568, -0.9992372, -7.4448976e-09, -3.7252903e-09, 0, 0.99999994, -0.26449132, -0.17172581, 3.1282558)
 
@@ -118,14 +115,8 @@ canvas_cull_mask = 4294967293
 size = Vector2i(960, 1440)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="HBoxContainer/SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 0.16043244, 0.98704684, 0, -0.98704684, 0.16043244, -3.4072065, 3.8319786, -4.5703216)
-visible = false
-
-[node name="Label" type="Label" parent="HBoxContainer/SubViewportContainer/SubViewport"]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "sqdqsdqdqsdqsdq"
+[node name="bucker" parent="HBoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("4_56nod")]
+transform = Transform3D(1, 0, 0, 0, 0.14798209, 0.98899007, 0, -0.98899007, 0.14798209, 0.08256529, -0.14809349, -3.2986722)
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="HBoxContainer"]
 layout_mode = 2
