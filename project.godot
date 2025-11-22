@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 window/size/viewport_width=1920
 window/size/viewport_height=1440
 window/size/mode=3
+window/stretch/mode="canvas_items"
 
 [file_customization]
 
@@ -96,3 +97,8 @@ joy_right={
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":0,"axis_value":1.0,"script":null)
 ]
 }
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
