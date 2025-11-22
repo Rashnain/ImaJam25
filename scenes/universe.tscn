@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bhec4di1vy6je" path="res://assets/models/Geodesic Dome.glb" id="3_qbb8e"]
 [ext_resource type="PackedScene" uid="uid://dksuu6e7bmqf2" path="res://scenes/buncker.tscn" id="4_56nod"]
 [ext_resource type="PackedScene" uid="uid://0cqe7mefg1tp" path="res://test/mine.tscn" id="5_5fwve"]
-[ext_resource type="Shader" path="res://crt_shader.gdshader" id="7_qbb8e"]
+[ext_resource type="Shader" uid="uid://dufovwr4lc72q" path="res://shaders/crt_shader.gdshader" id="7_qbb8e"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cqgor"]
 shader = ExtResource("1_uc3kj")
@@ -115,12 +115,17 @@ canvas_cull_mask = 4294967293
 size = Vector2i(960, 1440)
 render_target_update_mode = 4
 
-[node name="bucker" parent="HBoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("4_56nod")]
-transform = Transform3D(1, 0, 0, 0, 0.14798209, 0.98899007, 0, -0.98899007, 0.14798209, 0.08256529, -0.14809349, -3.2986722)
+[node name="buncker_p1" parent="HBoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("4_56nod")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.08256529, -0.14809349, -3.8090787)
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="buncker_p2" parent="HBoxContainer/SubViewportContainer2" instance=ExtResource("4_56nod")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.08256529, -0.14809349, 3.662776)
+visible = false
+player_index = 1
 
 [node name="SubViewport2" type="SubViewport" parent="HBoxContainer/SubViewportContainer2"]
 handle_input_locally = false
@@ -129,7 +134,8 @@ size = Vector2i(960, 1440)
 render_target_update_mode = 4
 
 [node name="Camera3D2" type="Camera3D" parent="HBoxContainer/SubViewportContainer2/SubViewport2"]
-transform = Transform3D(-0.99721575, -0.025862096, -0.06994328, -0.06412863, -0.18127146, 0.98134, -0.03805823, 0.98309296, 0.17910823, -3.2963533, 3.1617234, 2.2903323)
+transform = Transform3D(-0.99721575, -0.025862092, -0.06994328, -0.06412863, -0.18127146, 0.98134, -0.03805823, 0.98309296, 0.17910823, -3.2963533, 3.1617234, 2.2903323)
+visible = false
 
 [node name="CRTFilter" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_56nod")
