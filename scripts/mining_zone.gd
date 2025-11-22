@@ -12,8 +12,8 @@ func _on_body_entered(body):
 		print("Le joueur est entré dans la zone de minage !")
 		emit_signal("player_entered_zone")
 		body.is_mining = true
-		var mining_ui = preload("res://scenes/MiningUI.tscn").instantiate()
-		get_tree().current_scene.add_child(mining_ui)
+		##var mining_ui = preload("res://scenes/MiningUI.tscn").instantiate()
+		##get_tree().current_scene.add_child(mining_ui)
 
 func _on_body_exited(body):
 	if body.is_in_group("player"):

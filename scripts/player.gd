@@ -5,8 +5,10 @@ extends CharacterBody3D
 var mining_ui = preload("res://scenes/MiningUI.tscn")
 var mining_instance = null
 var mining_count = 0
-var mining_required = 10
+var mining_required = 1
 var is_mining = false
+
+var ui_text
 
 func _physics_process(_delta):
 	var direction = Vector3.ZERO
@@ -37,11 +39,12 @@ func start_mining():
 		return
 	is_mining = true
 	mining_count = 0
-	mining_instance = mining_ui.instance()
-	get_node("CanvasLayer").add_child(mining_instance)
+	
+	##mining_instance = mining_ui.instantiate()
+	##get_node("/root/Mine/CanvasLayer").add_child(mining_instance)
 	
 func mining_success():
-	Globals.ores += 1
+	Globals.add_ore()
 	print("Ressource obtenue ! Total =", Globals.ores)
 	
 	mining_count = 0
@@ -55,6 +58,10 @@ func exit_mining():
 	mining_count =0
 	
 	print("Minage quitté")
+
+func _ready():
+	var ui = get_tree().get_current_scene().get_node("UI/CanvasLayer")
+	ui_text = ui.get_node("Label")
 
 func  _process(_delta: float) -> void:
 	if is_mining:
