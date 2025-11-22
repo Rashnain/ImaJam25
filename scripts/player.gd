@@ -1,15 +1,12 @@
 extends CharacterBody3D
 
-@export var speed := 10.0
+@export var speed := 15.0
 
 var mining_ui = preload("res://scenes/MiningUI.tscn")
 var mining_instance = null
 var mining_count = 0
 var mining_required = 10
 var is_mining = false
-
-var is_inside_mining_zone = false
-
 
 func _physics_process(_delta):
 	var direction = Vector3.ZERO
@@ -63,7 +60,6 @@ func  _process(_delta: float) -> void:
 	if is_mining:
 		if Input.is_action_just_pressed("button_high_1"):
 			mining_count += 1
-		print("Mining:", mining_count, "/", mining_required)
 		
 		if mining_count >= mining_required:
 			mining_success()

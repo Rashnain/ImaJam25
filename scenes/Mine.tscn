@@ -49,3 +49,7 @@ shape = SubResource("BoxShape3D_rrkvo")
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14.347584, -15.30484, 2)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
