@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3 uid="uid://qw0l40j2x8qo"]
+
+[ext_resource type="Shader" uid="uid://dxmi6ae305ccl" path="res://stars_skybox.gdshader" id="1_p2ssq"]
+[ext_resource type="PackedScene" uid="uid://0cqe7mefg1tp" path="res://test/mine.tscn" id="1_qnams"]
+[ext_resource type="Texture2D" uid="uid://cyjsc8pagl37o" path="res://assets/images/stars.png" id="2_cqgor"]
+[ext_resource type="PackedScene" uid="uid://d4ggp4gkswbts" path="res://test/bucker.tscn" id="2_p2ssq"]
+[ext_resource type="PackedScene" uid="uid://bhec4di1vy6je" path="res://assets/models/Geodesic Dome.glb" id="3_siqxx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cqgor"]
+shader = ExtResource("1_p2ssq")
+shader_parameter/skybox = ExtResource("2_cqgor")
+
+[sub_resource type="Sky" id="Sky_p2ssq"]
+sky_material = SubResource("ShaderMaterial_cqgor")
+
+[sub_resource type="Environment" id="Environment_qnams"]
+background_mode = 2
+sky = SubResource("Sky_p2ssq")
+ssao_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cqgor"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_siqxx"]
+material = SubResource("StandardMaterial3D_cqgor")
+radius = 100.0
+height = 200.0
+
+[node name="universe" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qnams")
+
+[node name="Sun" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.85436827, 0.51966834, 0, -0.51966834, 0.8543683, -0.83270264, 0.13137746, -266.64844)
+layers = 3
+cast_shadow = 0
+mesh = SubResource("SphereMesh_siqxx")
+skeleton = NodePath("DirectionalLight3D")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Sun"]
+layers = 3
+sky_mode = 1
+
+[node name="Earth" type="Node3D" parent="."]
+transform = Transform3D(-0.99923724, -0.03905057, 0, 0.03905057, -0.99923724, 0, 0, 0, 1, -3.4704342, 0.7015295, -0.82049227)
+
+[node name="Dome" parent="Earth" instance=ExtResource("3_siqxx")]
+
+[node name="bucker" parent="Earth" instance=ExtResource("2_p2ssq")]
+transform = Transform3D(-0.99923724, 0.03905057, 0, -0.03905057, -0.99923724, 0, 0, 0, 1, -0.088285446, 0.14475632, -3.2986722)
+
+[node name="mine" parent="Earth" instance=ExtResource("1_qnams")]
+transform = Transform3D(-0.9992372, 0.039050568, 2.9094943e-10, -0.039050568, -0.9992372, -7.4448976e-09, -3.7252903e-09, 0, 0.99999994, -0.26449132, -0.17172581, 3.1282558)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainer"]
+handle_input_locally = false
+canvas_cull_mask = 4294967293
+size = Vector2i(960, 1440)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="HBoxContainer/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.16043244, 0.98704684, 0, -0.98704684, 0.16043244, -3.4072065, 3.8319786, -4.5703216)
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SubViewport2" type="SubViewport" parent="HBoxContainer/SubViewportContainer2"]
+handle_input_locally = false
+canvas_cull_mask = 4294967294
+size = Vector2i(960, 1440)
+render_target_update_mode = 4
+
+[node name="Camera3D2" type="Camera3D" parent="HBoxContainer/SubViewportContainer2/SubViewport2"]
+transform = Transform3D(-0.99721575, -0.025862096, -0.06994328, -0.06412863, -0.18127146, 0.98134, -0.03805823, 0.98309296, 0.17910823, -3.2963533, 3.1617234, 2.2903323)
