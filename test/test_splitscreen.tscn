@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://qw0l40j2x8qo"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rln8v"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5fodl"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qnams"]
+viewport_path = NodePath("SubViewport2")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+canvas_cull_mask = 4294967293
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport"]
+transform = Transform3D(0.059445795, 0.99823153, 0, -0.99823153, 0.059445795, 0, 0, 0, 1, 0, 1.1178316, 0)
+mesh = SubResource("CylinderMesh_rln8v")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1164072, 1.9199884)
+cull_mask = 1048573
+
+[node name="SubViewport2" type="SubViewport" parent="."]
+canvas_cull_mask = 4294967294
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="SubViewport2"]
+transform = Transform3D(0.8981804, -0.009665462, -0.4395206, 0.4391649, -0.026091183, 0.8980275, -0.020147467, -0.99961275, -0.01918986, 0, 0.1034323, 0)
+layers = 2
+mesh = SubResource("CylinderMesh_rln8v")
+
+[node name="Camera3D2" type="Camera3D" parent="SubViewport2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1253146, 1.9199884)
+cull_mask = 1048574
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 729.0
+grow_horizontal = 2
+size_flags_vertical = 0
+texture = SubResource("ViewportTexture_5fodl")
+
+[node name="TextureRect2" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 5.0
+offset_top = 741.0
+offset_right = 5.0
+offset_bottom = 1439.0
+grow_horizontal = 2
+size_flags_vertical = 0
+texture = SubResource("ViewportTexture_qnams")
