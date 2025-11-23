@@ -1,9 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://dksuu6e7bmqf2"]
+[gd_scene load_steps=8 format=3 uid="uid://dksuu6e7bmqf2"]
 
-[ext_resource type="PackedScene" uid="uid://c22145ocwrut1" path="res://scenes/invader.tscn" id="1_b7yr3"]
 [ext_resource type="Script" uid="uid://ck5ow3f8k78c2" path="res://scripts/canon.gd" id="1_y6rli"]
-[ext_resource type="PackedScene" uid="uid://bw33q1y255vxn" path="res://assets/models/Spaceship(1).glb" id="3_7y6w1"]
-[ext_resource type="PackedScene" uid="uid://drnva0tn7bnqd" path="res://assets/models/Spaceship.glb" id="4_uu818"]
 [ext_resource type="Texture2D" uid="uid://0leskk5adfkw" path="res://assets/images/muzzle.png" id="5_uu818"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o1kce"]
@@ -60,15 +57,3 @@ skeleton = NodePath("../../..")
 [node name="missiles" type="Node3D" parent="."]
 
 [node name="invaders" type="Node3D" parent="."]
-
-[node name="Invader" parent="invaders" instance=ExtResource("1_b7yr3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0615864, 7.4940176, -0.6864872)
-
-[node name="Invader2" parent="invaders" instance=ExtResource("1_b7yr3")]
-transform = Transform3D(-0.3491729, -0.23805887, -0.9063152, -0.08558403, 0.971251, -0.22214243, 0.93314195, -1.276854e-08, -0.35950828, 5.854712, 7.220338, 2.5951233)
-
-[node name="Spaceship(1)" parent="invaders" instance=ExtResource("3_7y6w1")]
-transform = Transform3D(0.007512642, 0, -0.0066000167, 0, 0.01, 0, 0.0066000167, 0, 0.007512642, 5.498579, 4.4930825, -3.9036531)
-
-[node name="spaceship" parent="invaders" instance=ExtResource("4_uu818")]
-transform = Transform3D(-0.2736907, 0, -0.96181774, 0, 1, 0, 0.96181774, 0, -0.2736907, 16.795027, 0.26288033, 1.4135642)
