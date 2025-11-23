@@ -4,8 +4,9 @@ var light_ammo: Array[int] = [100, 100]
 var heavy_ammo: Array[int] = [10, 10]
 
 var ores := 0
+var alienOres := 0
 
-signal ores_changed(value)
+signal ores_changed()
 signal ammo_changed()
 
 func add_ore():
@@ -16,7 +17,7 @@ func add_heavy_ammo(player: int, amount: int = 2):
 	# On vérifie qu'il y a assez de minerais
 	if ores >= amount:
 		ores -= amount             # On retire les minerais
-		heavy_ammo[player] += amount  # On ajoute la munition
+		heavy_ammo[player] += 1  # On ajoute la munition
 		emit_signal("ammo_changed")
 		emit_signal("ores_changed")
 	else:
@@ -25,7 +26,7 @@ func add_heavy_ammo(player: int, amount: int = 2):
 func add_light_ammo(player: int, amount: int = 1):
 	if ores >= amount:
 		ores -= amount             # On retire les minerais
-		light_ammo[player] += amount  # On ajoute la munition
+		light_ammo[player] += 1  # On ajoute la munition
 		emit_signal("ammo_changed")
 		emit_signal("ores_changed")
 	else:
