@@ -26,7 +26,7 @@ func spawnEnnemyAtRandom() -> void:
 		if not delayed_spawn or invader_data.spawn_delay <= gameTime:
 			var invaderNode = INVADER.instantiate()
 			invaderNode.init(invader_data)
-			var spawnPosition = Vector3(randf_range(-500.0, 500.0),randf_range(-500.0,500.0),dayPosition * 1000.0)
+			var spawnPosition = Vector3(randf_range(-800.0, 800.0),randf_range(-900.0,900.0),dayPosition * 1000.0)
 			invaderNode.global_position = spawnPosition
 			var targetPosition = buncker_p_1.global_position if dayPosition == -1 else buncker_p_2.global_position
 			invaderNode.setFrontVector(spawnPosition, targetPosition)
