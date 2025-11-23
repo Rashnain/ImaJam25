@@ -24,23 +24,18 @@ func add_ore():
 	emit_signal("ores_changed")
 
 func add_heavy_ammo(player: int, amount: int = 2):
-	# On vérifie qu'il y a assez de minerais
 	if ores[1-player_index_bunker] >= amount:
-		ores[1-player_index_bunker] -= amount             # On retire les minerais
-		heavy_ammo[player] += 1  # On ajoute la munition
+		ores[1-player_index_bunker] -= amount
+		heavy_ammo[player] += 1
 		emit_signal("ammo_changed")
 		emit_signal("ores_changed")
-	else:
-		print("Pas assez de minerais !")
 
 func add_light_ammo(player: int, amount: int = 1):
 	if ores[1-player_index_bunker] >= amount:
-		ores[1-player_index_bunker] -= amount             # On retire les minerais
-		light_ammo[player] += 1  # On ajoute la munition
+		ores[1-player_index_bunker] -= amount
+		light_ammo[player] += 1
 		emit_signal("ammo_changed")
 		emit_signal("ores_changed")
-	else:
-		print("Pas assez de minerais !")
 
 func _process(_delta: float) -> void:
 	if alien_ores[player_index_bunker] >= 10:

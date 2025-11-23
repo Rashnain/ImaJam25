@@ -56,23 +56,20 @@ func _physics_process(_delta):
 	
 func mining_success():
 	GM.add_ore()
-	print("Ressource obtenue ! Total =", GM.ores)
 	
 	mining_count = 0
 
 func exit_mining():
 	if mining_instance:
 		mining_instance.queue_free()
-	
+
 	is_mining = false
 	mining_instance = null
 	mining_count = 0
-	
-	print("Minage quitté")
-	
+
 func exit_crafting_missile():
 	is_crafting_missile = false
-	
+
 func exit_crafting_lightball():
 	is_crafting_lightball = false
 

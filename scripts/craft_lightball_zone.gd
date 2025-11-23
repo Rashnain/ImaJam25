@@ -8,12 +8,10 @@ func _ready():
 
 func _on_body_entered(body):
 	if body.is_in_group("player"):
-		print("Player craft lightball")
 		emit_signal("player_entered_zone")
 		body.is_crafting_lightball = true
 
 func _on_body_exited(body):
 	if body.is_in_group("player"):
-		print("Player exit lightball zone")
 		body.exit_mining()
 		body.is_crafting_lightball = false

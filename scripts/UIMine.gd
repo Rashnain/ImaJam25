@@ -3,7 +3,6 @@ extends Label
 
 var stat_template: String
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	stat_template = text
 	update_text()
@@ -13,8 +12,7 @@ func _ready() -> void:
 	
 func update_text():
 	var player_index := 1-GM.player_index_bunker
-	GM.mine_text = stat_template % [GM.light_ammo[player_index], GM.heavy_ammo[player_index],
-		GM.ores[player_index], GM.alien_ores[player_index], GM.upgrades[player_index]]
+	GM.mine_text = stat_template % [GM.ores[player_index], GM.alien_ores[player_index], GM.upgrades[player_index]]
 
 
 func _on_ores_changed():
