@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var speed := 15.0
+@export var speed := 18.0
 
 var mining_ui = preload("res://scenes/MiningUI.tscn")
 var mining_instance = null

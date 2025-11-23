@@ -1,12 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6v1c7g53ledk"]
+[gd_scene load_steps=8 format=3 uid="uid://b6v1c7g53ledk"]
 
 [ext_resource type="Script" uid="uid://c7em6imxqa4dd" path="res://scripts/craft_missile_zone.gd" id="1_hkwkd"]
+[ext_resource type="Texture2D" uid="uid://br35gfiea3spb" path="res://assets/images/Missile.png" id="2_o5ktk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ebyp2"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_hkwkd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o5ktk"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_hkwkd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vng5l"]
+albedo_texture = ExtResource("2_o5ktk")
 
 [node name="CraftMissileZone" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.5, 0, 0, 0)
@@ -62,3 +68,8 @@ script = ExtResource("1_hkwkd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_o5ktk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("QuadMesh_hkwkd")
+surface_material_override/0 = SubResource("StandardMaterial3D_vng5l")

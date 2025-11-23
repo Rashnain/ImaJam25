@@ -26,6 +26,7 @@ skeleton = NodePath("../..")
 [node name="Area3D" type="Area3D" parent="Missile"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Missile/Area3D"]
+visible = false
 shape = SubResource("BoxShape3D_80075")
 
 [connection signal="area_entered" from="Missile/Area3D" to="." method="_on_area_3d_area_entered"]

@@ -1,12 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://7dyi58wxpbjy"]
+[gd_scene load_steps=8 format=3 uid="uid://7dyi58wxpbjy"]
 
 [ext_resource type="Script" uid="uid://cig1yfocjj664" path="res://scripts/mining_zone.gd" id="1_prmgt"]
+[ext_resource type="Texture2D" uid="uid://007qa0anjqk2" path="res://assets/images/pickaxe.png" id="2_3k0a0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a4tbp"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_prmgt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_prmgt"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_gb6jc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iyuiw"]
+albedo_texture = ExtResource("2_3k0a0")
 
 [node name="MiningZone" type="Node3D"]
 
@@ -61,3 +67,8 @@ script = ExtResource("1_prmgt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_prmgt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("QuadMesh_gb6jc")
+surface_material_override/0 = SubResource("StandardMaterial3D_iyuiw")
