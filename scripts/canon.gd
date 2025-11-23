@@ -5,8 +5,8 @@ extends Node3D
 @onready var missiles: Node3D = $missiles
 @onready var canon: MeshInstance3D = $bunker/canon
 var stat_template: String
-var light_ammo_cooldown: float = 1
-var heavy_ammo_cooldown: float = 5
+var light_ammo_cooldown: float = 0.5
+var heavy_ammo_cooldown: float = 2.5
 @export_range(0, 1) var player_index: int
 var angular_speed = PI / 5
 
@@ -29,7 +29,7 @@ func _input(event: InputEvent) -> void:
 
 
 func spawn_light_ammo():
-	if GM.light_ammo[player_index] && light_ammo_cooldown == 1:
+	if GM.light_ammo[player_index] && light_ammo_cooldown == 0.5:
 		light_ammo_cooldown = 0
 		GM.light_ammo[player_index] -= 1
 		var missile_scene := preload("res://scenes/light_ball.tscn")
@@ -40,7 +40,7 @@ func spawn_light_ammo():
 
 
 func spawn_heavy_ammo():
-	if GM.heavy_ammo[player_index] && heavy_ammo_cooldown == 5:
+	if GM.heavy_ammo[player_index] && heavy_ammo_cooldown == 2.5:
 		heavy_ammo_cooldown = 0
 		GM.heavy_ammo[player_index] -= 1
 		var missile_scene := preload("res://scenes/missile.tscn")
@@ -50,8 +50,8 @@ func spawn_heavy_ammo():
 
 
 func _process(delta: float) -> void:
-	light_ammo_cooldown = clamp(light_ammo_cooldown + delta, 0, 1)
-	heavy_ammo_cooldown = clamp(heavy_ammo_cooldown + delta, 0, 5)
+	light_ammo_cooldown = clamp(light_ammo_cooldown + delta, 0, 0.5)
+	heavy_ammo_cooldown = clamp(heavy_ammo_cooldown + delta, 0, 2.5)
 	GM.bunker_text = stat_template % [light_ammo_cooldown, GM.light_ammo[player_index],
 		heavy_ammo_cooldown, GM.heavy_ammo[player_index], canon.rotation_degrees.x,
 		canon.rotation_degrees.z, GM.alien_ores[player_index]]
