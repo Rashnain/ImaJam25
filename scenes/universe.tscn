@@ -2,27 +2,27 @@
 
 [ext_resource type="Script" uid="uid://c2ejsyi7408jq" path="res://scripts/universe.gd" id="1_56nod"]
 [ext_resource type="Shader" uid="uid://dxmi6ae305ccl" path="res://shaders/stars_skybox.gdshader" id="1_uc3kj"]
-[ext_resource type="Script" uid="uid://bal5h2nf024hx" path="res://scripts/invader_template.gd" id="2_7viwd"]
+[ext_resource type="Script" path="res://scripts/invader_template.gd" id="2_7viwd"]
 [ext_resource type="Texture2D" uid="uid://cyjsc8pagl37o" path="res://assets/images/stars.png" id="2_jegdv"]
 [ext_resource type="Script" uid="uid://cruraok6nexmg" path="res://scripts/skyCycle.gd" id="3_jegdv"]
 [ext_resource type="PackedScene" uid="uid://bhec4di1vy6je" path="res://assets/models/Geodesic Dome.glb" id="3_qbb8e"]
 [ext_resource type="PackedScene" uid="uid://dksuu6e7bmqf2" path="res://scenes/buncker.tscn" id="4_56nod"]
 [ext_resource type="Script" uid="uid://b8cve7a3aicl5" path="res://scripts/sub_viewport.gd" id="6_5fwve"]
 [ext_resource type="PackedScene" uid="uid://ddshenuk8qi2w" path="res://scenes/Mine.tscn" id="6_qbb8e"]
-[ext_resource type="Shader" path="res://shaders/crt_shader.gdshader" id="7_qbb8e"]
+[ext_resource type="Shader" uid="uid://dufovwr4lc72q" path="res://shaders/crt_shader.gdshader" id="7_qbb8e"]
 [ext_resource type="Script" uid="uid://c1aqjbyo3rgek" path="res://scripts/bunker_ui.gd" id="9_yb76g"]
 
 [sub_resource type="Resource" id="Resource_3yicu"]
 script = ExtResource("2_7viwd")
 mesh_path = "res://assets/models/Spaceship.glb"
-base_speed = 100.0
+base_speed = 10.0
 mesh_rescale = 3.0
 metadata/_custom_type_script = "uid://bal5h2nf024hx"
 
 [sub_resource type="Resource" id="Resource_yanup"]
 script = ExtResource("2_7viwd")
 mesh_path = "res://assets/models/Spaceship(1).glb"
-base_speed = 75.0
+base_speed = 7.5
 spawn_delay = 10.0
 mesh_rescale = 0.25
 metadata/_custom_type_script = "uid://bal5h2nf024hx"
@@ -95,7 +95,7 @@ environment = SubResource("Environment_qnams")
 script = ExtResource("3_jegdv")
 timeOfDay = 0.0
 simulateTime = true
-rateOfTime = 100.0
+rateOfTime = 10.0
 skyGradient = SubResource("Gradient_jegdv")
 
 [node name="Sun" type="MeshInstance3D" parent="."]
@@ -109,6 +109,8 @@ skeleton = NodePath("DirectionalLight3D")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Sun"]
 layers = 3
 shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 0.0
 sky_mode = 1
 
 [node name="Earth" type="Node3D" parent="."]
@@ -135,6 +137,7 @@ size = Vector2i(960, 1440)
 size_2d_override = Vector2i(960, 0)
 render_target_update_mode = 4
 script = ExtResource("6_5fwve")
+player_index = 1
 
 [node name="mine" parent="HBoxContainer/SubViewportContainer_p1/SubViewport" instance=ExtResource("6_qbb8e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29501915, -59.98263)
@@ -143,6 +146,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29501915, -59.98263)
 process_mode = 4
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.08256529, -0.14809349, -85.37951)
 visible = false
+player_index = 1
 
 [node name="SubViewportContainer_p2" type="SubViewportContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -154,11 +158,9 @@ size = Vector2i(960, 1440)
 size_2d_override = Vector2i(960, 0)
 render_target_update_mode = 4
 script = ExtResource("6_5fwve")
-player_index = 1
 
 [node name="buncker" parent="HBoxContainer/SubViewportContainer_p2/SubViewport" instance=ExtResource("4_56nod")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.08256529, -0.14809349, 85.49482)
-player_index = 1
 
 [node name="mine" parent="HBoxContainer/SubViewportContainer_p2" instance=ExtResource("6_qbb8e")]
 process_mode = 4
@@ -179,6 +181,25 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 36
+vertical_alignment = 1
+script = ExtResource("9_yb76g")
+is_bunker_ui = true
+
+[node name="mine_ui" type="Label" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = -312.0
+offset_right = 889.0
+offset_bottom = -50.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/shadow_outline_size = 5
+theme_override_font_sizes/font_size = 40
 vertical_alignment = 1
 script = ExtResource("9_yb76g")
 

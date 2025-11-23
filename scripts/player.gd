@@ -17,17 +17,33 @@ var ui_text
 func _physics_process(_delta):
 	var direction = Vector3.ZERO
 
-	if Input.is_action_pressed("joy_up"):
-		direction.z -= 1
+	if Input.get_joy_axis(1-GM.player_index_bunker, JOY_AXIS_LEFT_Y) > 0.1 or \
+			Input.is_action_pressed("joy_down_p%d" % [1-GM.player_index_bunker]):
+		if (GM.player_index_bunker == 0):
+			direction.z += 1
+		else:
+			direction.z -= 1
 
-	if Input.is_action_pressed("joy_right"):
-		direction.x += 1
+	if Input.get_joy_axis(1-GM.player_index_bunker, JOY_AXIS_LEFT_Y) < -0.1 or \
+			Input.is_action_pressed("joy_up_p%d" % [1-GM.player_index_bunker]):
+		if (GM.player_index_bunker == 0):
+			direction.z -= 1
+		else:
+			direction.z += 1
 
-	if Input.is_action_pressed("joy_left"):
-		direction.x -= 1
+	if Input.get_joy_axis(1-GM.player_index_bunker, JOY_AXIS_LEFT_X) > 0.1 or \
+			Input.is_action_pressed("joy_right_p%d" % [1-GM.player_index_bunker]):
+		if (GM.player_index_bunker == 0):
+			direction.x += 1
+		else:
+			direction.x -= 1
 
-	if Input.is_action_pressed("joy_down"):
-		direction.z += 1
+	if Input.get_joy_axis(1-GM.player_index_bunker, JOY_AXIS_LEFT_X) < -0.1 or \
+			Input.is_action_pressed("joy_left_p%d" % [1-GM.player_index_bunker]):
+		if (GM.player_index_bunker == 0):
+			direction.x -= 1
+		else:
+			direction.x += 1
 
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
@@ -64,32 +80,36 @@ func _ready():
 	var ui = get_parent().get_node("UI/CanvasLayer")
 	ui_text = ui.get_node("Label")
 
-func  _process(_delta: float) -> void:
-	if is_mining:
-		if Input.is_action_just_pressed("button_high_1"):
-			mining_count += 1
-		
-		if mining_count >= mining_required:
-			mining_success()
-			
-	if is_crafting_missile:
-		if Input.is_action_just_pressed("button_high_1"):
-			##if player 1 (index 0)
-			GM.add_heavy_ammo(1)
-			##if player 2 (index 1)
-			## GM.add_heavy_ammo(0)
-			
-	if is_crafting_lightball:
-		if Input.is_action_just_pressed("button_high_1"):
-			##if player 1 (index 0)
-			GM.add_light_ammo(1)
-			##if player 2 (index 1) TODO
-			##GM.add_light_ammo(0)
-			
-	if Input.is_action_just_pressed("button_high_2"):
+func  _input(event: InputEvent) -> void:
+	if GM.on_arcade:
+		if event is InputEventJoypadButton:
+			if event.device == 1-GM.player_index_bunker:
+				if is_mining:
+					if event.is_action_pressed("button_high_1"):
+						mining_count += 1
+
+					if mining_count >= mining_required:
+						mining_success()
+
+				if is_crafting_missile:
+					if event.is_action_pressed("button_high_1"):
+						GM.add_heavy_ammo(GM.player_index_bunker)
+
+				if is_crafting_lightball:
+					if event.is_action_pressed("button_high_1"):
+						GM.add_light_ammo(GM.player_index_bunker)
+	else:
 		if is_mining:
-			exit_mining()
+			if event.is_action_pressed("button_high_1_p%d" % [1-GM.player_index_bunker]):
+				mining_count += 1
+
+			if mining_count >= mining_required:
+				mining_success()
+
 		if is_crafting_missile:
-			exit_crafting_missile()
+			if event.is_action_pressed("button_high_1_p%d" % [1-GM.player_index_bunker]):
+				GM.add_heavy_ammo(GM.player_index_bunker)
+
 		if is_crafting_lightball:
-			exit_crafting_lightball()
+			if event.is_action_pressed("button_high_1_p%d" % [1-GM.player_index_bunker]):
+				GM.add_light_ammo(GM.player_index_bunker)

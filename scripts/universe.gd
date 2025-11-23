@@ -5,6 +5,7 @@ extends Node3D
 @onready var sv1: SubViewport = $HBoxContainer/SubViewportContainer_p1/SubViewport
 @onready var sv2: SubViewport = $HBoxContainer/SubViewportContainer_p2/SubViewport
 @onready var bunker_ui: Label = $bunker_ui
+@onready var mine_ui: Label = $mine_ui
 
 const INVADER = preload("uid://c22145ocwrut1")
 
@@ -47,9 +48,15 @@ func _on_timeUpdated() -> void:
 	dayPosition *= -1
 
 func _ready() -> void:
+	if FileAccess.open("C:\\Users\\Borne Arcade\\Documents\\je_suis_la_borne_darcade_um.txt", FileAccess.READ) == null:
+		GM.on_arcade = false
+	else:
+		GM.on_arcade = true
 	env.half_day_passed.connect(sv1._on_half_day_passed)
 	env.half_day_passed.connect(sv2._on_half_day_passed)
 	env.half_day_passed.connect(bunker_ui._on_half_day_passed)
+	env.half_day_passed.connect(mine_ui._on_half_day_passed)
+	env.half_day_passed.connect(GM._on_half_day_passed)
 	env.half_day_passed.connect(_on_timeUpdated)
 
 func _process(delta: float) -> void:

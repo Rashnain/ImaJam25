@@ -1,18 +1,20 @@
 extends Label
 
 
+var stat_template: String
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	stat_template = text
 	update_text()
 	GM.connect("ores_changed", _on_ores_changed)
 	GM.connect("ammo_changed", _on_ammo_changed)
 	GM.connect("upgrades_changed", _on_upgrades_changed)
 	
 func update_text():
-	self.text = "Ressources : " + str(GM.ores) \
-		+ "\nJ1 - Missiles : " + str(GM.heavy_ammo[0]) + " / Lightballs : " + str(GM.light_ammo[0]) \
-		+ "\nJ2 - Missiles : " + str(GM.heavy_ammo[1]) + " / Lightsballs : " + str(GM.light_ammo[1]) \
-		+ "\nAméliorations : Minage +" + str(GM.upgrades)
+	var player_index := 1-GM.player_index_bunker
+	GM.mine_text = stat_template % [GM.light_ammo[player_index], GM.heavy_ammo[player_index],
+		GM.ores[player_index], GM.alien_ores[player_index], GM.upgrades[player_index]]
 
 
 func _on_ores_changed():

@@ -10,13 +10,13 @@ var next: Node3D
 
 
 func _ready() -> void:
-	if player_index == 0:
+	if player_index == 1:
 		bunker = $"../buncker"
 		mine = $mine
 		current = mine
 		next = bunker
 
-	if player_index == 1:
+	if player_index == 0:
 		bunker = $buncker
 		mine = $"../mine"
 		current = bunker

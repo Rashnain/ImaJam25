@@ -8,10 +8,45 @@ var stat_template: String
 var light_ammo_cooldown: float = 1
 var heavy_ammo_cooldown: float = 5
 @export_range(0, 1) var player_index: int
-
+var angular_speed = PI / 5
 
 func _ready() -> void:
 	stat_template = ui.text
+
+
+func _input(event: InputEvent) -> void:
+	if GM.on_arcade:
+		if event is InputEventJoypadButton and event.device == GM.player_index_bunker:
+			if event.is_action_pressed("button_high_1"):
+				spawn_light_ammo()
+			if event.is_action_pressed("button_high_2"):
+				spawn_heavy_ammo()
+	else:
+		if event.is_action_pressed("button_high_1_p%d" % GM.player_index_bunker):
+			spawn_light_ammo()
+		elif event.is_action_pressed("button_high_2_p%d" % GM.player_index_bunker):
+			spawn_heavy_ammo()
+
+
+func spawn_light_ammo():
+	if GM.light_ammo[player_index] && light_ammo_cooldown == 1:
+		light_ammo_cooldown = 0
+		GM.light_ammo[player_index] -= 1
+		var missile_scene := preload("res://scenes/light_ball.tscn")
+		var missile : Node3D = missile_scene.instantiate()
+		missile.rotation = canon.rotation
+		missile.speed = 100
+		missiles.add_child(missile)
+
+
+func spawn_heavy_ammo():
+	if GM.heavy_ammo[player_index] && heavy_ammo_cooldown == 5:
+		heavy_ammo_cooldown = 0
+		GM.heavy_ammo[player_index] -= 1
+		var missile_scene := preload("res://scenes/missile.tscn")
+		var missile : Node3D = missile_scene.instantiate()
+		missile.rotation = canon.rotation
+		missiles.add_child(missile)
 
 
 func _process(delta: float) -> void:
@@ -21,35 +56,31 @@ func _process(delta: float) -> void:
 		heavy_ammo_cooldown, GM.heavy_ammo[player_index], canon.rotation_degrees.x,
 		canon.rotation_degrees.z, GM.alien_ores[player_index]]
 
-	var angular_speed = PI / 5 * delta
-
-	# TODO gérer input
-	if Input.is_action_pressed("joy_down"):
-		canon.rotation.z = clamp(canon.rotation.z - angular_speed, -40.0/360 * 2*PI, 40.0/360 * 2*PI)
-	if Input.is_action_pressed("joy_up"):
-		canon.rotation.z = clamp(canon.rotation.z + angular_speed, -40.0/360 * 2*PI, 40.0/360 * 2*PI)
-	if Input.is_action_pressed("joy_right"):
-		canon.rotation.x = clamp(canon.rotation.x + angular_speed, -40.0/360 * 2*PI, 40.0/360 * 2*PI)
-	if Input.is_action_pressed("joy_left"):
-		canon.rotation.x = clamp(canon.rotation.x - angular_speed, -40.0/360 * 2*PI, 40.0/360 * 2*PI)
-
-	if Input.is_action_just_pressed("button_high_1"):
-		if GM.light_ammo[player_index] && light_ammo_cooldown == 1:
-			light_ammo_cooldown = 0
-			GM.light_ammo[player_index] -= 1
-			var missile_scene := preload("res://scenes/light_ball.tscn")
-			var missile : Node3D = missile_scene.instantiate()
-			#missile.position = Vector3(0, -1, 0)
-			missile.rotation = canon.rotation
-			missile.speed = 100
-			missiles.add_child(missile)
-
-	if Input.is_action_just_pressed("button_high_2"):
-		if GM.heavy_ammo[player_index] && heavy_ammo_cooldown == 5:
-			heavy_ammo_cooldown = 0
-			GM.heavy_ammo[player_index] -= 1
-			var missile_scene := preload("res://scenes/missile.tscn")
-			var missile : Node3D = missile_scene.instantiate()
-			#missile.position = Vector3(0, -1, 0)
-			missile.rotation = canon.rotation
-			missiles.add_child(missile)
+	if GM.on_arcade:
+		if Input.get_joy_axis(GM.player_index_bunker, JOY_AXIS_LEFT_Y) > 0.1:
+			canon.rotation.z = clamp(canon.rotation.z - angular_speed * delta, -40.0/360 * 2*PI, 40.0/360 * 2*PI)
+		if Input.get_joy_axis(GM.player_index_bunker, JOY_AXIS_LEFT_Y) < -0.1:
+			canon.rotation.z = clamp(canon.rotation.z + angular_speed * delta, -40.0/360 * 2*PI, 40.0/360 * 2*PI)
+		if Input.get_joy_axis(GM.player_index_bunker, JOY_AXIS_LEFT_X) < -0.1:
+			canon.rotation.x = clamp(canon.rotation.x - angular_speed * delta, -40.0/360 * 2*PI, 40.0/360 * 2*PI)
+		if Input.get_joy_axis(GM.player_index_bunker, JOY_AXIS_LEFT_X) > 0.1:
+			canon.rotation.x = clamp(canon.rotation.x + angular_speed * delta, -40.0/360 * 2*PI, 40.0/360 * 2*PI)
+	else:
+		if GM.player_index_bunker:
+			if Input.is_action_pressed("joy_down_p1"):
+				canon.rotation.z = clamp(canon.rotation.z - angular_speed * delta, -40.0/360 * 2*PI, 40.0/360 * 2*PI)
+			if Input.is_action_pressed("joy_up_p1"):
+				canon.rotation.z = clamp(canon.rotation.z + angular_speed * delta, -40.0/360 * 2*PI, 40.0/360 * 2*PI)
+			if Input.is_action_pressed("joy_left_p1"):
+				canon.rotation.x = clamp(canon.rotation.x - angular_speed * delta, -40.0/360 * 2*PI, 40.0/360 * 2*PI)
+			if Input.is_action_pressed("joy_right_p1"):
+				canon.rotation.x = clamp(canon.rotation.x + angular_speed * delta, -40.0/360 * 2*PI, 40.0/360 * 2*PI)
+		else:
+			if Input.is_action_pressed("joy_down_p0"):
+				canon.rotation.z = clamp(canon.rotation.z - angular_speed * delta, -40.0/360 * 2*PI, 40.0/360 * 2*PI)
+			if Input.is_action_pressed("joy_up_p0"):
+				canon.rotation.z = clamp(canon.rotation.z + angular_speed * delta, -40.0/360 * 2*PI, 40.0/360 * 2*PI)
+			if Input.is_action_pressed("joy_left_p0"):
+				canon.rotation.x = clamp(canon.rotation.x - angular_speed * delta, -40.0/360 * 2*PI, 40.0/360 * 2*PI)
+			if Input.is_action_pressed("joy_right_p0"):
+				canon.rotation.x = clamp(canon.rotation.x + angular_speed * delta, -40.0/360 * 2*PI, 40.0/360 * 2*PI)

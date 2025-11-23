@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://ddshenuk8qi2w"]
 
-[ext_resource type="PackedScene" uid="uid://cklug4ph1qwcw" path="res://scenes/Player.tscn" id="1_rrkvo"]
+[ext_resource type="PackedScene" path="res://scenes/Player.tscn" id="1_rrkvo"]
 [ext_resource type="PackedScene" uid="uid://7dyi58wxpbjy" path="res://scenes/MiningZone.tscn" id="2_xpffi"]
 [ext_resource type="Script" uid="uid://c60mcgni8ni1y" path="res://scripts/UIMine.gd" id="3_nwtmj"]
 [ext_resource type="PackedScene" uid="uid://coy54obvk2ech" path="res://scenes/CraftLightBallZone.tscn" id="4_fgt8m"]
@@ -147,10 +147,14 @@ transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, 1.5, 0, -1.5, -6.556708e-08
 [node name="CanvasLayer" type="CanvasLayer" parent="UI"]
 
 [node name="Label" type="Label" parent="UI/CanvasLayer"]
-offset_left = 501.68396
-offset_top = 98.63695
-offset_right = 541.68396
-offset_bottom = 121.63695
+visible = false
+offset_right = 248.0
+offset_bottom = 127.0
+text = "Munitions légère : %d
+Munitions lourdes : %d
+Ressources normales : %d
+Ressources alien : %d
+Amélioration : %d"
 script = ExtResource("3_nwtmj")
 
 [node name="Root Scene" parent="." instance=ExtResource("6_kh0u7")]
