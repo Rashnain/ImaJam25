@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxjr2aocxfknq"]
+[gd_scene load_steps=9 format=3 uid="uid://ddshenuk8qi2w"]
 
-[ext_resource type="PackedScene" path="res://scenes/Player.tscn" id="1_rrkvo"]
-[ext_resource type="PackedScene" path="res://scenes/MiningZone.tscn" id="2_xpffi"]
-[ext_resource type="Script" path="res://scripts/UIMine.gd" id="3_nwtmj"]
+[ext_resource type="PackedScene" uid="uid://cklug4ph1qwcw" path="res://scenes/Player.tscn" id="1_rrkvo"]
+[ext_resource type="PackedScene" uid="uid://7dyi58wxpbjy" path="res://scenes/MiningZone.tscn" id="2_xpffi"]
+[ext_resource type="Script" uid="uid://c60mcgni8ni1y" path="res://scripts/UIMine.gd" id="3_nwtmj"]
+[ext_resource type="PackedScene" uid="uid://b6v1c7g53ledk" path="res://scenes/CraftMissileZone.tscn" id="4_ke0lc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_puq0c"]
 
@@ -12,7 +13,7 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rrkvo"]
 
-[node name="Node3D" type="Node3D"]
+[node name="Mine" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 36.147526, -3.8673897)
@@ -48,7 +49,10 @@ transform = Transform3D(9.999999, 0, 0, 0, -4.371139e-07, 1.9999999, 0, -10, -8.
 shape = SubResource("BoxShape3D_rrkvo")
 
 [node name="MiningZone" parent="." instance=ExtResource("2_xpffi")]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 14.347584, 2.9612856, 28.670483)
+transform = Transform3D(1.5, 0, 0, 0, -6.556708e-08, 1.5, 0, -1.5, -6.556708e-08, 18.945, 2.961, 32)
+
+[node name="CraftMissileZone" parent="." instance=ExtResource("4_ke0lc")]
+transform = Transform3D(-1.5, -2.2649371e-07, 1.650059e-14, 0, -6.556708e-08, -2.5, 2.2649371e-07, -1.5, 1.09278474e-07, -0.021, 2, 32)
 
 [node name="UI" type="Node" parent="."]
 

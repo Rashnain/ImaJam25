@@ -8,6 +8,10 @@ var mining_count = 0
 var mining_required = 1
 var is_mining = false
 
+var is_crafting_missile = false
+
+var is_crafting_lightball = false
+
 var ui_text
 
 func _physics_process(_delta):
@@ -33,15 +37,6 @@ func _physics_process(_delta):
 	move_and_slide()
 
 	velocity.z = 0
-
-func start_mining():
-	if is_mining:
-		return
-	is_mining = true
-	mining_count = 0
-	
-	##mining_instance = mining_ui.instantiate()
-	##get_node("/root/Mine/CanvasLayer").add_child(mining_instance)
 	
 func mining_success():
 	GM.add_ore()
@@ -55,9 +50,15 @@ func exit_mining():
 	
 	is_mining = false
 	mining_instance = null
-	mining_count =0
+	mining_count = 0
 	
 	print("Minage quitté")
+	
+func exit_crafting_missile():
+	is_crafting_missile = false
+	
+func exit_crafting_lightball():
+	is_crafting_lightball = false
 
 func _ready():
 	var ui = get_parent().get_node("UI/CanvasLayer")
@@ -71,5 +72,17 @@ func  _process(_delta: float) -> void:
 		if mining_count >= mining_required:
 			mining_success()
 			
+	if is_crafting_missile:
+		if Input.is_action_just_pressed("button_high_1"):
+			##if player 1 (index 0)
+			GM.add_heavy_ammo(1)
+			##if player 2 (index 1)
+			## GM.add_heavy_ammo(0)
+			
 	if Input.is_action_just_pressed("button_high_2"):
-		exit_mining()
+		if is_mining:
+			exit_mining()
+		if is_crafting_missile:
+			exit_crafting_missile()
+		if is_crafting_lightball:
+			exit_crafting_lightball()
