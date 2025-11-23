@@ -34,9 +34,14 @@ func spawnEnnemyAtRandom() -> void:
 			invaders.append(invaderNode)
 
 func updateInvadersPositions(delta) -> void:
+	var alive_invaders: Array[Node] = []
+
 	for invader in invaders:
-		# We assume the front vector is normalised
-		invader.global_position += invader.getFrontVector() * invader.base_speed * speed_multiplier * delta
+		if is_instance_valid(invader):
+			alive_invaders.append(invader)
+			invader.global_position += invader.getFrontVector() * invader.base_speed * speed_multiplier * delta
+
+	invaders = alive_invaders
 
 func _on_timeUpdated() -> void:
 	dayPosition *= -1

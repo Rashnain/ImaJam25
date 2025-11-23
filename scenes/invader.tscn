@@ -8,12 +8,12 @@ size = Vector3(1, 2.7539673, 1)
 [node name="Invader" type="Node3D"]
 script = ExtResource("1_188pp")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Hitbox" type="Area3D" parent="."]
 collision_layer = 2
 monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 0.03941673, 0.9992229, 0, -0.9992229, 0.03941673, 0, 0.0033909837, -0.08596218)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(30, 0, 0, 0, 1.1825035, 29.976686, 0, -29.976686, 1.1825035, 0, 0.0033909837, -0.08596218)
 shape = SubResource("BoxShape3D_188pp")
 
-[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_area_3d_area_entered"]

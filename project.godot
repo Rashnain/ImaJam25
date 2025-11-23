@@ -40,6 +40,10 @@ folder_colors={
 
 import/blender/enabled=false
 
+[global_group]
+
+ammo=""
+
 [input]
 
 start={
