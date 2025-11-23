@@ -15,16 +15,16 @@
 [sub_resource type="Resource" id="Resource_3yicu"]
 script = ExtResource("2_7viwd")
 mesh_path = "res://assets/models/Spaceship.glb"
-base_speed = 20.0
+base_speed = 100.0
 mesh_rescale = 3.0
 metadata/_custom_type_script = "uid://bal5h2nf024hx"
 
 [sub_resource type="Resource" id="Resource_yanup"]
 script = ExtResource("2_7viwd")
 mesh_path = "res://assets/models/Spaceship(1).glb"
-base_speed = 15.0
+base_speed = 75.0
 spawn_delay = 10.0
-mesh_rescale = 0.25
+mesh_rescale = 0.06
 metadata/_custom_type_script = "uid://bal5h2nf024hx"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cqgor"]

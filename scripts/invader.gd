@@ -15,7 +15,7 @@ func setFrontVector(spawnPosition: Vector3, targetPosition: Vector3) -> void:
 func getFrontVector() -> Vector3:
 	return frontVector
 
-func _on_area_entered(other_area: Area3D):
+func _on_area_3d_area_entered(other_area: Area3D):
 	print("Collision avec :", other_area)
 	print(other_area, " groups: ", other_area.get_groups())
 
@@ -29,7 +29,3 @@ func init(data):
 	model.scale = Vector3(data.mesh_rescale, data.mesh_rescale, data.mesh_rescale)
 	add_child(model)
 	self.base_speed = data.base_speed
-	
-
-func _ready():
-	hitbox.area_entered.connect(Callable(self, "_on_area_entered"))

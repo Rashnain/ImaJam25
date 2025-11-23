@@ -9,11 +9,13 @@ size = Vector3(1, 2.5, 1)
 [node name="Missile" type="Node3D" groups=["ammo"]]
 script = ExtResource("1_6cx5e")
 
-[node name="Missile" parent="." instance=ExtResource("1_np454")]
+[node name="Missile" type="Node3D" parent="."]
+
+[node name="Missile" parent="Missile" instance=ExtResource("1_np454")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="Missile" groups=["ammo"]]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Missile/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21743774, 0)
 shape = SubResource("BoxShape3D_6cx5e")

@@ -3,17 +3,17 @@
 [ext_resource type="Script" uid="uid://bclo31p8m0jsp" path="res://scripts/invader.gd" id="1_188pp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_188pp"]
-size = Vector3(1, 2.7539673, 1)
+size = Vector3(1, 0.18554688, 1)
 
 [node name="Invader" type="Node3D"]
 script = ExtResource("1_188pp")
 
 [node name="Hitbox" type="Area3D" parent="."]
-collision_layer = 2
+collision_layer = 3
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
-transform = Transform3D(400, 0, 0, 0, 15.766713, 399.68915, 0, -399.68915, 15.766713, 0, 0.0033909837, -0.08596218)
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 2.1463745, -0.08596218)
 shape = SubResource("BoxShape3D_188pp")
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_area_3d_area_entered"]
