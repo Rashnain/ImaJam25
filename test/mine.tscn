@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://0cqe7mefg1tp"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_m1qqq"]
-
-[node name="mine" type="Node3D"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-layers = 3
-mesh = SubResource("CapsuleMesh_m1qqq")
