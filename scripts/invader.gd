@@ -16,12 +16,9 @@ func getFrontVector() -> Vector3:
 	return frontVector
 
 func _on_area_3d_area_entered(other_area: Area3D):
-	print("Collision avec :", other_area)
-	print(other_area, " groups: ", other_area.get_groups())
-
 	if other_area.is_in_group("ammo"):
 		GM.alien_ores[GM.player_index_bunker] += 1
-		queue_free()  # détruit l’invader
+		queue_free()
 
 
 func init(data):
