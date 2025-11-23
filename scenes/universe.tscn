@@ -1,12 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://qw0l40j2x8qo"]
+[gd_scene load_steps=19 format=3 uid="uid://qw0l40j2x8qo"]
 
+[ext_resource type="Script" uid="uid://c2ejsyi7408jq" path="res://scripts/universe.gd" id="1_56nod"]
 [ext_resource type="Shader" uid="uid://dxmi6ae305ccl" path="res://shaders/stars_skybox.gdshader" id="1_uc3kj"]
 [ext_resource type="Texture2D" uid="uid://cyjsc8pagl37o" path="res://assets/images/stars.png" id="2_jegdv"]
-[ext_resource type="Script" path="res://scripts/skyCycle.gd" id="3_jegdv"]
+[ext_resource type="Script" uid="uid://cruraok6nexmg" path="res://scripts/skyCycle.gd" id="3_jegdv"]
 [ext_resource type="PackedScene" uid="uid://bhec4di1vy6je" path="res://assets/models/Geodesic Dome.glb" id="3_qbb8e"]
 [ext_resource type="PackedScene" uid="uid://dksuu6e7bmqf2" path="res://scenes/buncker.tscn" id="4_56nod"]
-[ext_resource type="PackedScene" uid="uid://cxjr2aocxfknq" path="res://scenes/Mine.tscn" id="6_qbb8e"]
+[ext_resource type="Script" uid="uid://b8cve7a3aicl5" path="res://scripts/sub_viewport.gd" id="6_5fwve"]
+[ext_resource type="PackedScene" uid="uid://ddshenuk8qi2w" path="res://scenes/Mine.tscn" id="6_qbb8e"]
 [ext_resource type="Shader" uid="uid://dufovwr4lc72q" path="res://shaders/crt_shader.gdshader" id="7_qbb8e"]
+[ext_resource type="Script" uid="uid://c1aqjbyo3rgek" path="res://scripts/bunker_ui.gd" id="9_yb76g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cqgor"]
 shader = ExtResource("1_uc3kj")
@@ -68,12 +71,14 @@ shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.5
 
 [node name="universe" type="Node3D"]
+script = ExtResource("1_56nod")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qnams")
 script = ExtResource("3_jegdv")
-timeOfDay = 912.8
-rateOfTime = 10.0
+timeOfDay = 0.0
+simulateTime = true
+rateOfTime = 100.0
 skyGradient = SubResource("Gradient_jegdv")
 
 [node name="Sun" type="MeshInstance3D" parent="."]
@@ -86,6 +91,7 @@ skeleton = NodePath("DirectionalLight3D")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Sun"]
 layers = 3
+shadow_enabled = true
 sky_mode = 1
 
 [node name="Earth" type="Node3D" parent="."]
@@ -98,43 +104,66 @@ transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -2.0
-offset_right = 2.0
+offset_right = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer"]
+[node name="SubViewportContainer_p1" type="SubViewportContainer" parent="HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 
-[node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainer_p1"]
 handle_input_locally = false
 canvas_cull_mask = 4294967293
 size = Vector2i(960, 1440)
+size_2d_override = Vector2i(960, 0)
 render_target_update_mode = 4
+script = ExtResource("6_5fwve")
 
-[node name="buncker_p1" parent="HBoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("4_56nod")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.08256529, -0.14809349, -85.37951)
-
-[node name="mine_p1" parent="HBoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("6_qbb8e")]
+[node name="mine" parent="HBoxContainer/SubViewportContainer_p1/SubViewport" instance=ExtResource("6_qbb8e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29501915, -59.98263)
 
-[node name="SubViewportContainer2" type="SubViewportContainer" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
+[node name="buncker" parent="HBoxContainer/SubViewportContainer_p1" instance=ExtResource("4_56nod")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.08256529, -0.14809349, -85.37951)
+visible = false
 
-[node name="SubViewport2" type="SubViewport" parent="HBoxContainer/SubViewportContainer2"]
+[node name="SubViewportContainer_p2" type="SubViewportContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainer_p2"]
 handle_input_locally = false
 canvas_cull_mask = 4294967294
 size = Vector2i(960, 1440)
+size_2d_override = Vector2i(960, 0)
 render_target_update_mode = 4
+script = ExtResource("6_5fwve")
+player_index = 1
 
-[node name="mine_p2" parent="HBoxContainer/SubViewportContainer2/SubViewport2" instance=ExtResource("6_qbb8e")]
-transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 0, -0.29501915, 59.624237)
-
-[node name="buncker_p2" parent="HBoxContainer/SubViewportContainer2/SubViewport2" instance=ExtResource("4_56nod")]
+[node name="buncker" parent="HBoxContainer/SubViewportContainer_p2/SubViewport" instance=ExtResource("4_56nod")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.08256529, -0.14809349, 85.49482)
 player_index = 1
+
+[node name="mine" parent="HBoxContainer/SubViewportContainer_p2" instance=ExtResource("6_qbb8e")]
+process_mode = 4
+transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 0, -0.29501915, 59.624237)
+visible = false
+
+[node name="bunker_ui" type="Label" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -889.0
+offset_top = -312.0
+offset_right = -50.0
+offset_bottom = -50.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 36
+vertical_alignment = 1
+script = ExtResource("9_yb76g")
 
 [node name="CRTFilter" type="ColorRect" parent="."]
 visible = false

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cy6mlo2wvi2qf"]
 
-[ext_resource type="Script" path="res://scripts/missile.gd" id="1_6cx5e"]
+[ext_resource type="Script" uid="uid://djkrjyw1y16t7" path="res://scripts/missile.gd" id="1_6cx5e"]
 [ext_resource type="PackedScene" uid="uid://d24ln7p66dnj6" path="res://assets/models/Missile.glb" id="1_np454"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6cx5e"]

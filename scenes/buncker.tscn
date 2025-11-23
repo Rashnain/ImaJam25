@@ -33,8 +33,19 @@ script = ExtResource("1_y6rli")
 material_override = SubResource("StandardMaterial3D_o1kce")
 mesh = SubResource("BoxMesh_8fpss")
 
+[node name="ui_template" type="Label" parent="bunker"]
+visible = false
+offset_right = 839.0
+offset_bottom = 262.0
+theme_override_font_sizes/font_size = 36
+text = "Munitions légère (%.1f/1s) : %d
+Munitions lourdes (%.1f/5s) : %d
+Angle X : %.1f
+Angle Z : %.1f
+Ressources alien : %d"
+
 [node name="canon" type="MeshInstance3D" parent="bunker"]
-transform = Transform3D(0.9463732, 0.32307512, 0, -0.32307512, 0.9463732, 0, 0, 0, 0.9999999, 0, 0, 0)
+transform = Transform3D(0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_5l0hf")
 skeleton = NodePath("../..")
 
@@ -45,23 +56,6 @@ transform = Transform3D(7.5497894e-08, -1.0000001, 4.371139e-08, 0, -4.3711392e-
 transform = Transform3D(5.960466e-09, 5.5879354e-09, 0.10000002, 4.1075277e-09, -0.10000002, 1.8626451e-09, 0.10000002, 4.1075268e-09, -5.9604663e-09, 0, 3.242, 0)
 mesh = SubResource("PlaneMesh_rq4jy")
 skeleton = NodePath("../../..")
-
-[node name="ui" type="Label" parent="bunker/canon"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 50.0
-offset_top = -312.0
-offset_right = 889.0
-offset_bottom = -50.0
-grow_vertical = 0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 36
-text = "Munitions légère [A] (chargement: %.1f/1s) : %d
-Munitions lourdes [E] (chargement: %.1f/5s) : %d
-Angle X : %.1f
-Angle Z : %.1f
-Ressources alien : %d"
 
 [node name="missiles" type="Node3D" parent="."]
 

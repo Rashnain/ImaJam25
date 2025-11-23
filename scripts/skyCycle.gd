@@ -3,7 +3,7 @@ extends WorldEnvironment
 @export_category("Sky Control")
 @export_range(0, 1440.0, 0.1) var timeOfDay: float = 720.0
 @export var simulateTime: bool = false
-@export_range(0, 10, 0.1) var rateOfTime: float = 1.0
+@export_range(0, 100, 0.1) var rateOfTime: float = 1.0
 @export var skyGradient: Gradient
 
 @onready var sun: MeshInstance3D = $"../Sun"
@@ -11,11 +11,15 @@ extends WorldEnvironment
 var sunPosition
 var sunDistance: float
 
+signal half_day_passed
+
+
 func simulateDay(delta):
 	if simulateTime:
 		timeOfDay += rateOfTime * delta
-		if timeOfDay >= 1440.0:
-			timeOfDay = 0
+		if int(timeOfDay / 720) != GM.halfday_counter:
+			GM.halfday_counter += 1
+			half_day_passed.emit()
 
 func updateSunPosition():
 	sun.global_position.x = sunDistance * cos(timeOfDay / 720.0 * PI)
