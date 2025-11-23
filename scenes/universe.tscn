@@ -1,15 +1,31 @@
-[gd_scene load_steps=19 format=3 uid="uid://qw0l40j2x8qo"]
+[gd_scene load_steps=22 format=3 uid="uid://qw0l40j2x8qo"]
 
 [ext_resource type="Script" uid="uid://c2ejsyi7408jq" path="res://scripts/universe.gd" id="1_56nod"]
 [ext_resource type="Shader" uid="uid://dxmi6ae305ccl" path="res://shaders/stars_skybox.gdshader" id="1_uc3kj"]
+[ext_resource type="Script" uid="uid://bal5h2nf024hx" path="res://scripts/invader_template.gd" id="2_7viwd"]
 [ext_resource type="Texture2D" uid="uid://cyjsc8pagl37o" path="res://assets/images/stars.png" id="2_jegdv"]
 [ext_resource type="Script" uid="uid://cruraok6nexmg" path="res://scripts/skyCycle.gd" id="3_jegdv"]
 [ext_resource type="PackedScene" uid="uid://bhec4di1vy6je" path="res://assets/models/Geodesic Dome.glb" id="3_qbb8e"]
 [ext_resource type="PackedScene" uid="uid://dksuu6e7bmqf2" path="res://scenes/buncker.tscn" id="4_56nod"]
 [ext_resource type="Script" uid="uid://b8cve7a3aicl5" path="res://scripts/sub_viewport.gd" id="6_5fwve"]
 [ext_resource type="PackedScene" uid="uid://ddshenuk8qi2w" path="res://scenes/Mine.tscn" id="6_qbb8e"]
-[ext_resource type="Shader" uid="uid://dufovwr4lc72q" path="res://shaders/crt_shader.gdshader" id="7_qbb8e"]
+[ext_resource type="Shader" path="res://shaders/crt_shader.gdshader" id="7_qbb8e"]
 [ext_resource type="Script" uid="uid://c1aqjbyo3rgek" path="res://scripts/bunker_ui.gd" id="9_yb76g"]
+
+[sub_resource type="Resource" id="Resource_3yicu"]
+script = ExtResource("2_7viwd")
+mesh_path = "res://assets/models/Spaceship.glb"
+base_speed = 100.0
+mesh_rescale = 3.0
+metadata/_custom_type_script = "uid://bal5h2nf024hx"
+
+[sub_resource type="Resource" id="Resource_yanup"]
+script = ExtResource("2_7viwd")
+mesh_path = "res://assets/models/Spaceship(1).glb"
+base_speed = 75.0
+spawn_delay = 10.0
+mesh_rescale = 0.25
+metadata/_custom_type_script = "uid://bal5h2nf024hx"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cqgor"]
 shader = ExtResource("1_uc3kj")
@@ -72,6 +88,7 @@ shader_parameter/vignette_opacity = 0.5
 
 [node name="universe" type="Node3D"]
 script = ExtResource("1_56nod")
+invaders_resources = Array[ExtResource("2_7viwd")]([SubResource("Resource_3yicu"), SubResource("Resource_yanup")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qnams")
@@ -166,7 +183,6 @@ vertical_alignment = 1
 script = ExtResource("9_yb76g")
 
 [node name="CRTFilter" type="ColorRect" parent="."]
-visible = false
 material = SubResource("ShaderMaterial_56nod")
 anchors_preset = 15
 anchor_right = 1.0
