@@ -14,6 +14,6 @@ func _on_body_entered(body):
 
 func _on_body_exited(body):
 	if body.is_in_group("player"):
-		print("Player exit missile")
+		print("Player exit missile zone")
 		body.exit_mining()
 		body.is_crafting_missile = false

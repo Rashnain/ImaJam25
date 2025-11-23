@@ -21,3 +21,12 @@ func add_heavy_ammo(player: int, amount: int = 2):
 		emit_signal("ores_changed")
 	else:
 		print("Pas assez de minerais !")
+
+func add_light_ammo(player: int, amount: int = 1):
+	if ores >= amount:
+		ores -= amount             # On retire les minerais
+		light_ammo[player] += amount  # On ajoute la munition
+		emit_signal("ammo_changed")
+		emit_signal("ores_changed")
+	else:
+		print("Pas assez de minerais !")

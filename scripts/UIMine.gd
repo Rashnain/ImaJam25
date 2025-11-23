@@ -9,8 +9,8 @@ func _ready() -> void:
 	
 func update_text():
 	self.text = "Ressources : " + str(GM.ores) \
-		+ "\nMissiles J1 : " + str(GM.heavy_ammo[0]) \
-		+ "\nMissiles J2 : " + str(GM.heavy_ammo[1])
+		+ "\nJ1 - Missiles : " + str(GM.heavy_ammo[0]) + " / Lightballs : " + str(GM.light_ammo[0]) \
+		+ "\nJ2 - Missiles : " + str(GM.heavy_ammo[1]) + " / Lightsballs : " + str(GM.light_ammo[1])
 
 
 func _on_ores_changed():

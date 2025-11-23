@@ -79,6 +79,13 @@ func  _process(_delta: float) -> void:
 			##if player 2 (index 1)
 			## GM.add_heavy_ammo(0)
 			
+	if is_crafting_lightball:
+		if Input.is_action_just_pressed("button_high_1"):
+			##if player 1 (index 0)
+			GM.add_light_ammo(1)
+			##if player 2 (index 1) TODO
+			##GM.add_light_ammo(0)
+			
 	if Input.is_action_just_pressed("button_high_2"):
 		if is_mining:
 			exit_mining()
