@@ -14,7 +14,7 @@ func _physics_process(_delta):
 	var direction = Vector3.ZERO
 
 	if Input.is_action_pressed("joy_up"):
-		direction.y += 1
+		direction.z -= 1
 
 	if Input.is_action_pressed("joy_right"):
 		direction.x += 1
@@ -23,7 +23,7 @@ func _physics_process(_delta):
 		direction.x -= 1
 
 	if Input.is_action_pressed("joy_down"):
-		direction.y -= 1
+		direction.z += 1
 
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
@@ -60,7 +60,7 @@ func exit_mining():
 	print("Minage quitté")
 
 func _ready():
-	var ui = get_tree().get_current_scene().get_node("UI/CanvasLayer")
+	var ui = get_parent().get_node("UI/CanvasLayer")
 	ui_text = ui.get_node("Label")
 
 func  _process(_delta: float) -> void:

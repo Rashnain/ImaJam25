@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://ddshenuk8qi2w"]
+[gd_scene load_steps=8 format=3 uid="uid://cxjr2aocxfknq"]
 
-[ext_resource type="PackedScene" uid="uid://cklug4ph1qwcw" path="res://scenes/Player.tscn" id="1_rrkvo"]
-[ext_resource type="PackedScene" uid="uid://7dyi58wxpbjy" path="res://scenes/MiningZone.tscn" id="2_xpffi"]
-[ext_resource type="Script" uid="uid://c60mcgni8ni1y" path="res://scripts/UIMine.gd" id="3_nwtmj"]
+[ext_resource type="PackedScene" path="res://scenes/Player.tscn" id="1_rrkvo"]
+[ext_resource type="PackedScene" path="res://scenes/MiningZone.tscn" id="2_xpffi"]
+[ext_resource type="Script" path="res://scripts/UIMine.gd" id="3_nwtmj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_puq0c"]
 
@@ -15,23 +15,23 @@
 [node name="Node3D" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.4219, 35)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 36.147526, -3.8673897)
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 47.213913)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 40.363487, 12.887665)
 
 [node name="Player" parent="." instance=ExtResource("1_rrkvo")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 11.696156, 2.0493243)
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0, 3.1647086, 1.6702051)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(60, 0, 0, 0, 60, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(60, 0, 0, 0, -2.6226833e-06, 2, 0, -60, -8.742278e-08, 0, 1.0486655, 13.354475)
 shape = SubResource("BoxShape3D_puq0c")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-transform = Transform3D(60, 0, 0, 0, 60, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(60, 0, 0, 0, -2.6226833e-06, 2, 0, -60, -8.742278e-08, 0, 1.0486655, 13.354475)
 mesh = SubResource("BoxMesh_e5ulv")
 skeleton = NodePath("")
 
@@ -39,15 +39,15 @@ skeleton = NodePath("")
 transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 1, -6.8192663, 18.432648, 2)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(9.999999, 0, 0, 0, -4.371139e-07, 1.9999999, 0, -10, -8.742277e-08, 0, -7.639408, -7.0664587)
 mesh = SubResource("BoxMesh_rrkvo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(9.999999, 0, 0, 0, -4.371139e-07, 1.9999999, 0, -10, -8.742277e-08, 0, -7.639408, -7.0664587)
 shape = SubResource("BoxShape3D_rrkvo")
 
 [node name="MiningZone" parent="." instance=ExtResource("2_xpffi")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14.347584, -15.30484, 2)
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 14.347584, 2.9612856, 28.670483)
 
 [node name="UI" type="Node" parent="."]
 
