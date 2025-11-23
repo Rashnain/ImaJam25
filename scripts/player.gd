@@ -44,8 +44,8 @@ func start_mining():
 	##get_node("/root/Mine/CanvasLayer").add_child(mining_instance)
 	
 func mining_success():
-	Globals.add_ore()
-	print("Ressource obtenue ! Total =", Globals.ores)
+	GM.add_ore()
+	print("Ressource obtenue ! Total =", GM.ores)
 	
 	mining_count = 0
 
