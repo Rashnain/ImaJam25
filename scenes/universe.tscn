@@ -92,6 +92,7 @@ sky_mode = 1
 transform = Transform3D(-0.99923724, -0.03905057, 0, 0.03905057, -0.99923724, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Dome" parent="Earth" instance=ExtResource("3_qbb8e")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchors_preset = 15
@@ -113,20 +114,14 @@ size = Vector2i(960, 1440)
 render_target_update_mode = 4
 
 [node name="buncker_p1" parent="HBoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("4_56nod")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.08256529, -0.14809349, -3.8090787)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.08256529, -0.14809349, -85.37951)
+
+[node name="mine_p1" parent="HBoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("6_qbb8e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29501915, -59.98263)
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="buncker_p2" parent="HBoxContainer/SubViewportContainer2" instance=ExtResource("4_56nod")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.08256529, -0.14809349, 3.662776)
-visible = false
-player_index = 1
-
-[node name="Camera3D2" type="Camera3D" parent="HBoxContainer/SubViewportContainer2"]
-transform = Transform3D(-0.99721575, -0.025862092, -0.06994328, -0.06412863, -0.18127146, 0.98134, -0.03805823, 0.98309296, 0.17910823, -3.2963533, 3.1617234, 2.2903323)
-visible = false
 
 [node name="SubViewport2" type="SubViewport" parent="HBoxContainer/SubViewportContainer2"]
 handle_input_locally = false
@@ -135,7 +130,11 @@ size = Vector2i(960, 1440)
 render_target_update_mode = 4
 
 [node name="mine_p2" parent="HBoxContainer/SubViewportContainer2/SubViewport2" instance=ExtResource("6_qbb8e")]
-transform = Transform3D(-0.1, 0, 8.742278e-09, 0, 0.1, 0, -8.742278e-09, 0, -0.1, 0, -0.29501915, 1.274261)
+transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 0, -0.29501915, 59.624237)
+
+[node name="buncker_p2" parent="HBoxContainer/SubViewportContainer2/SubViewport2" instance=ExtResource("4_56nod")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.08256529, -0.14809349, 85.49482)
+player_index = 1
 
 [node name="CRTFilter" type="ColorRect" parent="."]
 visible = false
