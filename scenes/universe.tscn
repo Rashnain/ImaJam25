@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/skyCycle.gd" id="3_jegdv"]
 [ext_resource type="PackedScene" uid="uid://bhec4di1vy6je" path="res://assets/models/Geodesic Dome.glb" id="3_qbb8e"]
 [ext_resource type="PackedScene" uid="uid://dksuu6e7bmqf2" path="res://scenes/buncker.tscn" id="4_56nod"]
-[ext_resource type="PackedScene" uid="uid://0cqe7mefg1tp" path="res://test/mine.tscn" id="5_5fwve"]
+[ext_resource type="PackedScene" uid="uid://cxjr2aocxfknq" path="res://scenes/Mine.tscn" id="6_qbb8e"]
 [ext_resource type="Shader" uid="uid://dufovwr4lc72q" path="res://shaders/crt_shader.gdshader" id="7_qbb8e"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cqgor"]
@@ -93,9 +93,6 @@ transform = Transform3D(-0.99923724, -0.03905057, 0, 0.03905057, -0.99923724, 0,
 
 [node name="Dome" parent="Earth" instance=ExtResource("3_qbb8e")]
 
-[node name="mine" parent="Earth" instance=ExtResource("5_5fwve")]
-transform = Transform3D(-0.9992372, 0.039050568, 2.9094943e-10, -0.039050568, -0.9992372, -7.4448976e-09, -3.7252903e-09, 0, 0.99999994, -0.26449132, -0.17172581, 3.1282558)
-
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
@@ -127,17 +124,21 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.08
 visible = false
 player_index = 1
 
+[node name="Camera3D2" type="Camera3D" parent="HBoxContainer/SubViewportContainer2"]
+transform = Transform3D(-0.99721575, -0.025862092, -0.06994328, -0.06412863, -0.18127146, 0.98134, -0.03805823, 0.98309296, 0.17910823, -3.2963533, 3.1617234, 2.2903323)
+visible = false
+
 [node name="SubViewport2" type="SubViewport" parent="HBoxContainer/SubViewportContainer2"]
 handle_input_locally = false
 canvas_cull_mask = 4294967294
 size = Vector2i(960, 1440)
 render_target_update_mode = 4
 
-[node name="Camera3D2" type="Camera3D" parent="HBoxContainer/SubViewportContainer2/SubViewport2"]
-transform = Transform3D(-0.99721575, -0.025862092, -0.06994328, -0.06412863, -0.18127146, 0.98134, -0.03805823, 0.98309296, 0.17910823, -3.2963533, 3.1617234, 2.2903323)
-visible = false
+[node name="mine_p2" parent="HBoxContainer/SubViewportContainer2/SubViewport2" instance=ExtResource("6_qbb8e")]
+transform = Transform3D(-0.1, 0, 8.742278e-09, 0, 0.1, 0, -8.742278e-09, 0, -0.1, 0, -0.29501915, 1.274261)
 
 [node name="CRTFilter" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_56nod")
 anchors_preset = 15
 anchor_right = 1.0
