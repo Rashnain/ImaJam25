@@ -8,7 +8,7 @@ var base_speed: float
 
 func setFrontVector(spawnPosition: Vector3, targetPosition: Vector3) -> void:
 	frontVector = (targetPosition - spawnPosition).normalized()
-	model.look_at(-frontVector)
+	model.look_at(global_position-frontVector)
 
 func getFrontVector() -> Vector3:
 	return frontVector
