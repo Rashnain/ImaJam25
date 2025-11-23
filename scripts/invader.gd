@@ -21,7 +21,8 @@ func _on_area_entered(other_area: Area3D):
 
 	if other_area.is_in_group("ammo"):
 		GM.alien_ores[GM.player_index_bunker] += 1
-		queue_free()
+		queue_free()  # détruit l’invader
+
 
 func init(data):
 	model = load(data.mesh_path).instantiate()
@@ -31,4 +32,4 @@ func init(data):
 	
 
 func _ready():
-	hitbox.area_entered.connect(_on_area_entered)
+	hitbox.area_entered.connect(Callable(self, "_on_area_entered"))

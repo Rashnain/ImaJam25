@@ -13,7 +13,7 @@ collision_layer = 2
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
-transform = Transform3D(30, 0, 0, 0, 1.1825035, 29.976686, 0, -29.976686, 1.1825035, 0, 0.0033909837, -0.08596218)
+transform = Transform3D(400, 0, 0, 0, 15.766713, 399.68915, 0, -399.68915, 15.766713, 0, 0.0033909837, -0.08596218)
 shape = SubResource("BoxShape3D_188pp")
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_area_3d_area_entered"]
