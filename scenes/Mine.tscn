@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://ddshenuk8qi2w"]
+
+[ext_resource type="PackedScene" uid="uid://cklug4ph1qwcw" path="res://scenes/Player.tscn" id="1_rrkvo"]
+[ext_resource type="PackedScene" uid="uid://7dyi58wxpbjy" path="res://scenes/MiningZone.tscn" id="2_xpffi"]
+[ext_resource type="Script" uid="uid://c60mcgni8ni1y" path="res://scripts/UIMine.gd" id="3_nwtmj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_puq0c"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_e5ulv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_rrkvo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rrkvo"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.4219, 35)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 47.213913)
+
+[node name="Player" parent="." instance=ExtResource("1_rrkvo")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 11.696156, 2.0493243)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(60, 0, 0, 0, 60, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_puq0c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(60, 0, 0, 0, 60, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("BoxMesh_e5ulv")
+skeleton = NodePath("")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 2, 0, 0, 0, 1, -6.8192663, 18.432648, 2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("BoxMesh_rrkvo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_rrkvo")
+
+[node name="MiningZone" parent="." instance=ExtResource("2_xpffi")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14.347584, -15.30484, 2)
+
+[node name="UI" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="UI"]
+
+[node name="Label" type="Label" parent="UI/CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("3_nwtmj")
