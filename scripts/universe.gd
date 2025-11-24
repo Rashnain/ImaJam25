@@ -7,7 +7,9 @@ extends Node3D
 @onready var sv2: SubViewport = $HBoxContainer/SubViewportContainer_p2/SubViewport
 @onready var bunker_ui: Label = $bunker_ui
 @onready var mine_ui: Label = $mine_ui
-@onready var end_game: Label = $end_game
+@onready var day_counter: Label = $day_counter
+@onready var game_over: Label = $game_over
+@onready var game_win: Label = $game_win
 @onready var ships: Node3D = $ships
 
 const INVADER = preload("res://scenes/invader.tscn")
@@ -71,20 +73,25 @@ func _ready() -> void:
 	env.half_day_passed.connect(_on_timeUpdated)
 
 func _process(delta: float) -> void:
+	day_counter.text = "Jour %d/5" % [GM.halfday_counter/2.0]
 	gameTime += delta
 	if spawn_rate <= 0:
 		spawn_rate = base_spawn_rate
 		spawnEnnemyAtRandom()
-	if GM.life[GM.player_index_bunker] == 0:
+	if GM.life[GM.player_index_bunker] == 0 or GM.halfday_counter == 10:
 		hbc.visible = false
 		earth.visible = false
 		bunker_ui.visible = false
 		mine_ui.visible = false
+		day_counter.visible = false
 		buncker_p_1.visible = false
 		buncker_p_2.visible = false
 		mine_p_1.visible = false
 		mine_p_2.visible = false
-		end_game.visible = true
+		if GM.halfday_counter == 10:
+			game_win.visible = true
+		else:
+			game_over.visible = true
 		get_tree().paused = true
 	spawn_rate -= delta
 	updateInvadersPositions(delta)
