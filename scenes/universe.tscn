@@ -93,7 +93,7 @@ invaders_resources = Array[ExtResource("2_7viwd")]([SubResource("Resource_3yicu"
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qnams")
 script = ExtResource("3_jegdv")
-timeOfDay = 0.0
+timeOfDay = 75.0
 simulateTime = true
 rateOfTime = 15.0
 skyGradient = SubResource("Gradient_jegdv")
