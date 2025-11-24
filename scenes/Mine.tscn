@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://ddshenuk8qi2w"]
 
-[ext_resource type="PackedScene" path="res://scenes/Player.tscn" id="1_rrkvo"]
+[ext_resource type="PackedScene" uid="uid://cklug4ph1qwcw" path="res://scenes/Player.tscn" id="1_rrkvo"]
 [ext_resource type="PackedScene" uid="uid://7dyi58wxpbjy" path="res://scenes/MiningZone.tscn" id="2_xpffi"]
 [ext_resource type="Script" uid="uid://c60mcgni8ni1y" path="res://scripts/UIMine.gd" id="3_nwtmj"]
 [ext_resource type="PackedScene" uid="uid://coy54obvk2ech" path="res://scenes/CraftLightBallZone.tscn" id="4_fgt8m"]
@@ -11,8 +11,9 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_puq0c"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_fgt8m"]
-radius = 0.7
-height = 1.3
+radius = 110.0
+height = 90.0
+is_hemisphere = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kh0u7"]
 
@@ -49,7 +50,7 @@ transform = Transform3D(60, 0, 0, 0, -2.6226833e-06, 2, 0, -60, -8.742278e-08, 0
 shape = SubResource("BoxShape3D_puq0c")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(60, 0, 0, 0, -2.6226833e-06, 2, 0, -60, -8.742278e-08, 0, 1.0486655, 13.354475)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -0.01, 0, -1, 4.3711387e-10, 0, 1, 64)
 mesh = SubResource("SphereMesh_fgt8m")
 skeleton = NodePath("")
 
