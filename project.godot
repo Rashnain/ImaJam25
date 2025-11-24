@@ -43,6 +43,8 @@ import/blender/enabled=false
 [global_group]
 
 ammo=""
+ship=""
+bunker=""
 
 [input]
 
