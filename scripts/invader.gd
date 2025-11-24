@@ -19,6 +19,8 @@ func _on_area_3d_area_entered(other_area: Area3D):
 	if other_area.is_in_group("ammo"):
 		GM.alien_ores[GM.player_index_bunker] += 1
 		queue_free()
+	if other_area.is_in_group("bunker"):
+		queue_free()
 
 
 func init(data):

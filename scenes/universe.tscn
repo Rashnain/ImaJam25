@@ -113,7 +113,7 @@ shadow_bias = 0.0
 shadow_normal_bias = 0.0
 sky_mode = 1
 
-[node name="Missiles" type="Node3D" parent="."]
+[node name="ships" type="Node3D" parent="."]
 
 [node name="Earth" parent="." instance=ExtResource("3_qbb8e")]
 transform = Transform3D(-19.984745, -0.78101146, 0, 0.78101146, -19.984745, 0, 0, 0, 20, 0, 0, 0)
@@ -179,6 +179,10 @@ offset_bottom = -50.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/shadow_outline_size = 5
 theme_override_font_sizes/font_size = 36
 vertical_alignment = 1
 script = ExtResource("9_yb76g")
@@ -201,6 +205,23 @@ theme_override_constants/shadow_outline_size = 5
 theme_override_font_sizes/font_size = 40
 vertical_alignment = 1
 script = ExtResource("9_yb76g")
+
+[node name="end_game" type="Label" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 0.627451)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/shadow_outline_size = 5
+theme_override_font_sizes/font_size = 125
+text = "La Terre est perdue"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CRTFilter" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_56nod")

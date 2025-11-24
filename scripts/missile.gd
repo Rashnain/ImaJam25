@@ -5,9 +5,6 @@ class_name Missile extends Node3D
 var speed: float = 20
 @onready var area: Area3D = $Missile/Area3D
 
-func _ready():
-	area.add_to_group("ammo")
-
 
 func _process(delta: float) -> void:
 	missile.rotation.y += PI * delta

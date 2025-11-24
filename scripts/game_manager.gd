@@ -5,6 +5,7 @@ var halfday_counter: int = 0
 
 var light_ammo: Array[int] = [100, 100]
 var heavy_ammo: Array[int] = [10, 10]
+var life: Array[int] = [10, 10]
 var bunker_text: String
 var mine_text: String
 var alien_ores: Array[int] = [0, 0]

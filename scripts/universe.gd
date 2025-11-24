@@ -2,11 +2,13 @@ extends Node3D
 
 
 @onready var env: WorldEnvironment = $WorldEnvironment
+@onready var hbc: HBoxContainer = $HBoxContainer
 @onready var sv1: SubViewport = $HBoxContainer/SubViewportContainer_p1/SubViewport
 @onready var sv2: SubViewport = $HBoxContainer/SubViewportContainer_p2/SubViewport
 @onready var bunker_ui: Label = $bunker_ui
 @onready var mine_ui: Label = $mine_ui
-@onready var missiles: Node3D = $Missiles
+@onready var end_game: Label = $end_game
+@onready var ships: Node3D = $ships
 
 const INVADER = preload("res://scenes/invader.tscn")
 
@@ -17,8 +19,11 @@ const INVADER = preload("res://scenes/invader.tscn")
 var base_spawn_rate: float = 3
 
 @onready var world_environment: WorldEnvironment = $WorldEnvironment
+@onready var earth: Node3D = $Earth
 @onready var buncker_p_1: Node3D = $HBoxContainer/SubViewportContainer_p1/buncker
 @onready var buncker_p_2: Node3D = $HBoxContainer/SubViewportContainer_p2/SubViewport/buncker
+@onready var mine_p_1: Node3D = $HBoxContainer/SubViewportContainer_p1/SubViewport/mine
+@onready var mine_p_2: Node3D = $HBoxContainer/SubViewportContainer_p2/mine
 
 var dayPosition: int = 1
 var gameTime: float = 0.0
@@ -28,7 +33,7 @@ func spawnEnnemyAtRandom() -> void:
 	for invader_data in invaders_resources:
 		if not delayed_spawn or invader_data.spawn_delay <= gameTime:
 			var invaderNode = INVADER.instantiate()
-			missiles.add_child(invaderNode)
+			ships.add_child(invaderNode)
 			invaderNode.init(invader_data)
 			var spawnPosition = Vector3(randf_range(-500, 500), randf_range(-500, 500), dayPosition * 1000)
 			invaderNode.global_position = spawnPosition
@@ -49,9 +54,9 @@ func updateInvadersPositions(delta) -> void:
 func _on_timeUpdated() -> void:
 	dayPosition *= -1
 	invaders.clear()
-	for missile in missiles.get_children():
-		missiles.remove_child(missile)
-		missile.queue_free()
+	for ship in ships.get_children():
+		ships.remove_child(ship)
+		ship.queue_free()
 
 func _ready() -> void:
 	if FileAccess.open("C:\\Users\\Borne Arcade\\Documents\\je_suis_la_borne_darcade_um.txt", FileAccess.READ) == null:
@@ -70,5 +75,16 @@ func _process(delta: float) -> void:
 	if spawn_rate <= 0:
 		spawn_rate = base_spawn_rate
 		spawnEnnemyAtRandom()
+	if GM.life[GM.player_index_bunker] == 0:
+		hbc.visible = false
+		earth.visible = false
+		bunker_ui.visible = false
+		mine_ui.visible = false
+		buncker_p_1.visible = false
+		buncker_p_2.visible = false
+		mine_p_1.visible = false
+		mine_p_2.visible = false
+		end_game.visible = true
+		get_tree().paused = true
 	spawn_rate -= delta
 	updateInvadersPositions(delta)

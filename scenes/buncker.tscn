@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dksuu6e7bmqf2"]
+[gd_scene load_steps=9 format=3 uid="uid://dksuu6e7bmqf2"]
 
 [ext_resource type="Script" uid="uid://ck5ow3f8k78c2" path="res://scripts/canon.gd" id="1_y6rli"]
 [ext_resource type="Texture2D" uid="uid://0leskk5adfkw" path="res://assets/images/muzzle.png" id="5_uu818"]
@@ -23,6 +23,9 @@ emission_energy_multiplier = 16.0
 [sub_resource type="PlaneMesh" id="PlaneMesh_rq4jy"]
 material = SubResource("StandardMaterial3D_avax8")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_y6rli"]
+size = Vector3(3, 1, 2)
+
 [node name="bunker" type="Node3D"]
 script = ExtResource("1_y6rli")
 
@@ -39,7 +42,8 @@ text = "Munitions légère (%.1f/0.5s) : %d
 Munitions lourdes (%.1f/2.5s) : %d
 Angle X : %.1f
 Angle Z : %.1f
-Ressources alien : %d"
+Ressources alien : %d
+État du bunker : %d"
 
 [node name="canon" type="MeshInstance3D" parent="bunker"]
 transform = Transform3D(0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0, 1, 0, 0, 0)
@@ -54,6 +58,11 @@ transform = Transform3D(5.960466e-09, 5.5879354e-09, 0.10000002, 4.1075277e-09, 
 mesh = SubResource("PlaneMesh_rq4jy")
 skeleton = NodePath("../../..")
 
+[node name="Area3D" type="Area3D" parent="bunker" groups=["bunker"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bunker/Area3D"]
+shape = SubResource("BoxShape3D_y6rli")
+
 [node name="missiles" type="Node3D" parent="."]
 
-[node name="invaders" type="Node3D" parent="."]
+[connection signal="area_entered" from="bunker/Area3D" to="." method="_on_area_3d_area_entered"]

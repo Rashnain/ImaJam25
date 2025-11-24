@@ -52,9 +52,10 @@ func spawn_heavy_ammo():
 func _process(delta: float) -> void:
 	light_ammo_cooldown = clamp(light_ammo_cooldown + delta, 0, 0.5)
 	heavy_ammo_cooldown = clamp(heavy_ammo_cooldown + delta, 0, 2.5)
+
 	GM.bunker_text = stat_template % [light_ammo_cooldown, GM.light_ammo[player_index],
 		heavy_ammo_cooldown, GM.heavy_ammo[player_index], canon.rotation_degrees.x,
-		canon.rotation_degrees.z, GM.alien_ores[player_index]]
+		canon.rotation_degrees.z, GM.alien_ores[player_index], GM.life[player_index]]
 
 	if GM.on_arcade:
 		if Input.get_joy_axis(GM.player_index_bunker, JOY_AXIS_LEFT_Y) > 0.1:
@@ -84,3 +85,8 @@ func _process(delta: float) -> void:
 				canon.rotation.x = clamp(canon.rotation.x - angular_speed * delta, -30.0/360 * 2*PI, 30.0/360 * 2*PI)
 			if Input.is_action_pressed("joy_right_p0"):
 				canon.rotation.x = clamp(canon.rotation.x + angular_speed * delta, -30.0/360 * 2*PI, 30.0/360 * 2*PI)
+
+
+func _on_area_3d_area_entered(area: Area3D) -> void:
+	if area.is_in_group("ship"):
+		GM.life[player_index] -= 1
