@@ -3,7 +3,6 @@ class_name Missile extends Node3D
 
 @onready var missile: Node3D = $Missile
 var speed: float = 20
-@onready var area: Area3D = $Missile/Area3D
 
 
 func _process(delta: float) -> void:
@@ -11,5 +10,9 @@ func _process(delta: float) -> void:
 	missile.position.y += speed * delta
 
 	if missile.position.length_squared() > 100000:
-		# TODO play explosion
+		queue_free()
+
+
+func _on_area_3d_area_entered(area: Area3D) -> void:
+	if area.is_in_group("ship") and speed == 100:
 		queue_free()
