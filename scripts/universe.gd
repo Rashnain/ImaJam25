@@ -6,8 +6,9 @@ extends Node3D
 @onready var sv2: SubViewport = $HBoxContainer/SubViewportContainer_p2/SubViewport
 @onready var bunker_ui: Label = $bunker_ui
 @onready var mine_ui: Label = $mine_ui
+@onready var missiles: Node3D = $Missiles
 
-const INVADER = preload("uid://c22145ocwrut1")
+const INVADER = preload("res://scenes/invader.tscn")
 
 @export var invaders_resources: Array[InvaderData]
 @export_range(0.5, 10, 0.1) var speed_multiplier: float = 1.0
@@ -27,7 +28,7 @@ func spawnEnnemyAtRandom() -> void:
 	for invader_data in invaders_resources:
 		if not delayed_spawn or invader_data.spawn_delay <= gameTime:
 			var invaderNode = INVADER.instantiate()
-			add_child(invaderNode)
+			missiles.add_child(invaderNode)
 			invaderNode.init(invader_data)
 			var spawnPosition = Vector3(randf_range(-500, 500), randf_range(-500, 500), dayPosition * 1000)
 			invaderNode.global_position = spawnPosition
@@ -47,6 +48,10 @@ func updateInvadersPositions(delta) -> void:
 
 func _on_timeUpdated() -> void:
 	dayPosition *= -1
+	invaders.clear()
+	for missile in missiles.get_children():
+		missiles.remove_child(missile)
+		missile.queue_free()
 
 func _ready() -> void:
 	if FileAccess.open("C:\\Users\\Borne Arcade\\Documents\\je_suis_la_borne_darcade_um.txt", FileAccess.READ) == null:

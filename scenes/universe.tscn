@@ -113,6 +113,8 @@ shadow_bias = 0.0
 shadow_normal_bias = 0.0
 sky_mode = 1
 
+[node name="Missiles" type="Node3D" parent="."]
+
 [node name="Earth" parent="." instance=ExtResource("3_qbb8e")]
 transform = Transform3D(-19.984745, -0.78101146, 0, 0.78101146, -19.984745, 0, 0, 0, 20, 0, 0, 0)
 
