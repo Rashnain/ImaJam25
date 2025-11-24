@@ -12,7 +12,8 @@ const INVADER = preload("uid://c22145ocwrut1")
 @export var invaders_resources: Array[InvaderData]
 @export_range(0.5, 10, 0.1) var speed_multiplier: float = 1.0
 @export var delayed_spawn: bool = false
-@export var spawn_rate: float = 3.0 ##Spawn Rate of Invaders in seconds
+@export var spawn_rate: float
+var base_spawn_rate: float = 3
 
 @onready var world_environment: WorldEnvironment = $WorldEnvironment
 @onready var buncker_p_1: Node3D = $HBoxContainer/SubViewportContainer_p1/buncker
@@ -28,7 +29,7 @@ func spawnEnnemyAtRandom() -> void:
 			var invaderNode = INVADER.instantiate()
 			add_child(invaderNode)
 			invaderNode.init(invader_data)
-			var spawnPosition = Vector3(randf_range(-800.0, 800.0),randf_range(-900.0,900.0),dayPosition * 1000.0)
+			var spawnPosition = Vector3(randf_range(-500, 500), randf_range(-500, 500), dayPosition * 1000)
 			invaderNode.global_position = spawnPosition
 			var targetPosition = buncker_p_1.global_position if dayPosition == -1 else buncker_p_2.global_position
 			invaderNode.setFrontVector(spawnPosition, targetPosition)
@@ -62,7 +63,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	gameTime += delta
 	if spawn_rate <= 0:
-		spawn_rate = 3.0
+		spawn_rate = base_spawn_rate
 		spawnEnnemyAtRandom()
 	spawn_rate -= delta
 	updateInvadersPositions(delta)
