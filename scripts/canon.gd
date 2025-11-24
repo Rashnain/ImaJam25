@@ -58,29 +58,29 @@ func _process(delta: float) -> void:
 
 	if GM.on_arcade:
 		if Input.get_joy_axis(GM.player_index_bunker, JOY_AXIS_LEFT_Y) > 0.1:
-			canon.rotation.z = clamp(canon.rotation.z - angular_speed * delta, -40.0/360 * 2*PI, 40.0/360 * 2*PI)
+			canon.rotation.z = clamp(canon.rotation.z - angular_speed * delta, -30.0/360 * 2*PI, 30.0/360 * 2*PI)
 		if Input.get_joy_axis(GM.player_index_bunker, JOY_AXIS_LEFT_Y) < -0.1:
-			canon.rotation.z = clamp(canon.rotation.z + angular_speed * delta, -40.0/360 * 2*PI, 40.0/360 * 2*PI)
+			canon.rotation.z = clamp(canon.rotation.z + angular_speed * delta, -30.0/360 * 2*PI, 30.0/360 * 2*PI)
 		if Input.get_joy_axis(GM.player_index_bunker, JOY_AXIS_LEFT_X) < -0.1:
-			canon.rotation.x = clamp(canon.rotation.x - angular_speed * delta, -40.0/360 * 2*PI, 40.0/360 * 2*PI)
+			canon.rotation.x = clamp(canon.rotation.x - angular_speed * delta, -30.0/360 * 2*PI, 30.0/360 * 2*PI)
 		if Input.get_joy_axis(GM.player_index_bunker, JOY_AXIS_LEFT_X) > 0.1:
-			canon.rotation.x = clamp(canon.rotation.x + angular_speed * delta, -40.0/360 * 2*PI, 40.0/360 * 2*PI)
+			canon.rotation.x = clamp(canon.rotation.x + angular_speed * delta, -30.0/360 * 2*PI, 30.0/360 * 2*PI)
 	else:
 		if GM.player_index_bunker:
 			if Input.is_action_pressed("joy_down_p1"):
-				canon.rotation.z = clamp(canon.rotation.z - angular_speed * delta, -40.0/360 * 2*PI, 40.0/360 * 2*PI)
+				canon.rotation.z = clamp(canon.rotation.z - angular_speed * delta, -30.0/360 * 2*PI, 30.0/360 * 2*PI)
 			if Input.is_action_pressed("joy_up_p1"):
-				canon.rotation.z = clamp(canon.rotation.z + angular_speed * delta, -40.0/360 * 2*PI, 40.0/360 * 2*PI)
+				canon.rotation.z = clamp(canon.rotation.z + angular_speed * delta, -30.0/360 * 2*PI, 30.0/360 * 2*PI)
 			if Input.is_action_pressed("joy_left_p1"):
-				canon.rotation.x = clamp(canon.rotation.x - angular_speed * delta, -40.0/360 * 2*PI, 40.0/360 * 2*PI)
+				canon.rotation.x = clamp(canon.rotation.x - angular_speed * delta, -30.0/360 * 2*PI, 30.0/360 * 2*PI)
 			if Input.is_action_pressed("joy_right_p1"):
-				canon.rotation.x = clamp(canon.rotation.x + angular_speed * delta, -40.0/360 * 2*PI, 40.0/360 * 2*PI)
+				canon.rotation.x = clamp(canon.rotation.x + angular_speed * delta, -30.0/360 * 2*PI, 30.0/360 * 2*PI)
 		else:
 			if Input.is_action_pressed("joy_down_p0"):
-				canon.rotation.z = clamp(canon.rotation.z - angular_speed * delta, -40.0/360 * 2*PI, 40.0/360 * 2*PI)
+				canon.rotation.z = clamp(canon.rotation.z - angular_speed * delta, -30.0/360 * 2*PI, 30.0/360 * 2*PI)
 			if Input.is_action_pressed("joy_up_p0"):
-				canon.rotation.z = clamp(canon.rotation.z + angular_speed * delta, -40.0/360 * 2*PI, 40.0/360 * 2*PI)
+				canon.rotation.z = clamp(canon.rotation.z + angular_speed * delta, -30.0/360 * 2*PI, 30.0/360 * 2*PI)
 			if Input.is_action_pressed("joy_left_p0"):
-				canon.rotation.x = clamp(canon.rotation.x - angular_speed * delta, -40.0/360 * 2*PI, 40.0/360 * 2*PI)
+				canon.rotation.x = clamp(canon.rotation.x - angular_speed * delta, -30.0/360 * 2*PI, 30.0/360 * 2*PI)
 			if Input.is_action_pressed("joy_right_p0"):
-				canon.rotation.x = clamp(canon.rotation.x + angular_speed * delta, -40.0/360 * 2*PI, 40.0/360 * 2*PI)
+				canon.rotation.x = clamp(canon.rotation.x + angular_speed * delta, -30.0/360 * 2*PI, 30.0/360 * 2*PI)
