@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c2ejsyi7408jq" path="res://scripts/universe.gd" id="1_56nod"]
 [ext_resource type="Shader" uid="uid://dxmi6ae305ccl" path="res://shaders/stars_skybox.gdshader" id="1_uc3kj"]
-[ext_resource type="Script" path="res://scripts/invader_template.gd" id="2_7viwd"]
+[ext_resource type="Script" uid="uid://bal5h2nf024hx" path="res://scripts/invader_template.gd" id="2_7viwd"]
 [ext_resource type="Texture2D" uid="uid://cyjsc8pagl37o" path="res://assets/images/stars.png" id="2_jegdv"]
 [ext_resource type="Script" uid="uid://cruraok6nexmg" path="res://scripts/skyCycle.gd" id="3_jegdv"]
 [ext_resource type="PackedScene" uid="uid://bhec4di1vy6je" path="res://assets/models/Geodesic Dome.glb" id="3_qbb8e"]
@@ -113,11 +113,8 @@ shadow_bias = 0.0
 shadow_normal_bias = 0.0
 sky_mode = 1
 
-[node name="Earth" type="Node3D" parent="."]
-transform = Transform3D(-0.99923724, -0.03905057, 0, 0.03905057, -0.99923724, 0, 0, 0, 1, 0, 0, 0)
-
-[node name="Dome" parent="Earth" instance=ExtResource("3_qbb8e")]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+[node name="Earth" parent="." instance=ExtResource("3_qbb8e")]
+transform = Transform3D(-19.984745, -0.78101146, 0, 0.78101146, -19.984745, 0, 0, 0, 20, 0, 0, 0)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchors_preset = 15
