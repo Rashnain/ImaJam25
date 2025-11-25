@@ -87,7 +87,7 @@ func _process(delta: float) -> void:
 	if spawn_rate <= 0:
 		spawn_rate = spawn_rate_curve()
 		spawnEnnemyAtRandom()
-	if GM.life[GM.player_index_bunker] == 0 or GM.halfday_counter == 10:
+	if GM.life[GM.player_index_bunker] <= 0 or GM.halfday_counter == 10:
 		hbc.visible = false
 		earth.visible = false
 		bunker_ui.visible = false
