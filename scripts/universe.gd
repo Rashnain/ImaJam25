@@ -18,7 +18,7 @@ const INVADER = preload("res://scenes/invader.tscn")
 @export_range(0.5, 10, 0.1) var speed_multiplier: float = 1.0
 @export var delayed_spawn: bool = false
 @export var spawn_rate: float
-var base_spawn_rate: float = 3
+var base_spawn_rate: float = 6
 
 @onready var world_environment: WorldEnvironment = $WorldEnvironment
 @onready var earth: Node3D = $Earth
@@ -59,6 +59,7 @@ func _on_timeUpdated() -> void:
 	for ship in ships.get_children():
 		ships.remove_child(ship)
 		ship.queue_free()
+	base_spawn_rate = 6 - GM.halfday_counter/2
 
 func _ready() -> void:
 	if FileAccess.open("C:\\Users\\Borne Arcade\\Documents\\je_suis_la_borne_darcade_um.txt", FileAccess.READ) == null:
@@ -72,11 +73,19 @@ func _ready() -> void:
 	env.half_day_passed.connect(GM._on_half_day_passed)
 	env.half_day_passed.connect(_on_timeUpdated)
 
+func spawn_rate_curve() -> float:
+	var val := int(env.timeOfDay) % 720 / 720.0
+	if val < 1.0/3.0:
+		return base_spawn_rate + val / (1.0/3.0) * val / (1.0/3.0) * (10 - base_spawn_rate)
+	if val > 2.0/3.0:
+		return base_spawn_rate + (val-2.0/3.0) / (1.0/3.0) * (val-2.0/3.0) / (1.0/3.0) * (10 - base_spawn_rate)
+	return base_spawn_rate
+
 func _process(delta: float) -> void:
 	day_counter.text = "Jour %d/5" % [GM.halfday_counter/2.0]
 	gameTime += delta
 	if spawn_rate <= 0:
-		spawn_rate = base_spawn_rate
+		spawn_rate = spawn_rate_curve()
 		spawnEnnemyAtRandom()
 	if GM.life[GM.player_index_bunker] == 0 or GM.halfday_counter == 10:
 		hbc.visible = false
