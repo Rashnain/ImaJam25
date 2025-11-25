@@ -3,7 +3,7 @@ extends Node
 var player_index_bunker: int = 0
 var halfday_counter: int = 0
 
-var light_ammo: Array[int] = [50, 50]
+var light_ammo: Array[int] = [25, 25]
 var heavy_ammo: Array[int] = [5, 5]
 var life: Array[int] = [10, 10]
 var bunker_text: String
@@ -30,5 +30,6 @@ func add_light_ammo(player: int, amount: int = 1):
 		light_ammo[player] += 1
 
 func _process(_delta: float) -> void:
+	if alien_ores[player_index_bunker] >= 10 + 10 * upgrades[player_index_bunker]:
+		alien_ores[player_index_bunker] -= 10 + 10 * upgrades[player_index_bunker]
 		upgrades[player_index_bunker] += 1
-		alien_ores[player_index_bunker] -= 10
