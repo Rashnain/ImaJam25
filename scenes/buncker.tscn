@@ -38,7 +38,7 @@ visible = false
 offset_right = 839.0
 offset_bottom = 262.0
 theme_override_font_sizes/font_size = 36
-text = "Munitions légère (%.1f/0.5s) : %d
+text = "Munitions légères (%.1f/0.5s) : %d
 Munitions lourdes (%.1f/2.5s) : %d
 Angle X : %.1f
 Angle Z : %.1f
