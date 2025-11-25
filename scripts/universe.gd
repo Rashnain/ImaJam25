@@ -82,7 +82,7 @@ func spawn_rate_curve() -> float:
 	return base_spawn_rate
 
 func _process(delta: float) -> void:
-	day_counter.text = "Jour %d/5" % [GM.halfday_counter/2.0]
+	day_counter.text = "Jour %d/5" % [1+GM.halfday_counter/2.0]
 	gameTime += delta
 	if spawn_rate <= 0:
 		spawn_rate = spawn_rate_curve()
