@@ -32,4 +32,4 @@ func add_light_ammo(player: int, amount: int = 1):
 func _process(_delta: float) -> void:
 	if alien_ores[player_index_bunker] >= 10 + 10 * upgrades[player_index_bunker]:
 		alien_ores[player_index_bunker] -= 10 + 10 * upgrades[player_index_bunker]
-		upgrades[player_index_bunker] += 1
+		upgrades[1-player_index_bunker] += 1
