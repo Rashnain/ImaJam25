@@ -11,8 +11,6 @@ var is_crafting_missile = false
 
 var is_crafting_lightball = false
 
-var ui_text
-
 func _physics_process(_delta):
 	var direction = Vector3.ZERO
 
@@ -71,10 +69,6 @@ func exit_crafting_missile():
 
 func exit_crafting_lightball():
 	is_crafting_lightball = false
-
-func _ready():
-	var ui = get_parent().get_node("UI/CanvasLayer")
-	ui_text = ui.get_node("Label")
 
 func  _input(event: InputEvent) -> void:
 	if GM.on_arcade:
